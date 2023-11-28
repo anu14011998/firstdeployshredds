@@ -1,6 +1,8 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
-import ConCompo from './components/ConCompo'
+// import ConCompo from './components/ConCompo'
+import { FontAwesome } from '@expo/vector-icons';
+
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import { CommonActions, NavigationContainer, RouteProp, useFocusEffect } from '@react-navigation/native';
@@ -17,6 +19,7 @@ import T2Screen2 from './Navigation/Tab2/T2Screen2'
 import T3Screen2 from './Navigation/Tab3/T3Screen2'
 import T3Screen3 from './Navigation/Tab3/T3Screen3'
 import T4Screen2 from './Navigation/Tab4/T4Screen2'
+import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
 
 
 
@@ -36,6 +39,7 @@ const App = () => {
         <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
         <Stack.Screen name='T1Screen2' component={T1Screen2} />
         <Stack.Screen name='T1Screen3' component={T1Screen3} />
+        <Stack.Screen name='T1Screen1modal1' component={T1Screen1modal1}/>
 
       </Stack.Navigator>
     )

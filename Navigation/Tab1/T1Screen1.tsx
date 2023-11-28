@@ -36,7 +36,7 @@ return (
           
           <View >
             <ScrollView>
-            {data.map((item: any) => (<TouchableOpacity key={item.p_id} >
+            {data.map((item: any) => (<TouchableOpacity key={item.p_id} onPress={()=>navigation.navigate("T1Screen1modal1")}>
                 <View style={styles.card}>
                   <Text>{item.p_id}</Text>
                   <Text>{item.p_name}</Text>
