@@ -20,8 +20,8 @@ import T3Screen2 from './Navigation/Tab3/T3Screen2'
 import T3Screen3 from './Navigation/Tab3/T3Screen3'
 import T4Screen2 from './Navigation/Tab4/T4Screen2'
 import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
-import Login from './components/Authenticate.tsx/Login';
-import Signup from './components/Authenticate.tsx/Signup';
+import Login from './components/Authenticate/Login';
+import Signup from './components/Authenticate/Signup';
 
 
 
