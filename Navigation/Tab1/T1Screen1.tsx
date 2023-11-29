@@ -1,11 +1,19 @@
-import { View, Text, Button, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, Text, Button, TouchableOpacity ,ScrollView} from 'react-native'
+import React, { useEffect ,useLayoutEffect} from 'react'
 import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../redux/actions/dashAction';
 import { StyleSheet } from 'react-native';
+<<<<<<< HEAD
+// import {  } from 'react-native-gesture-handler';
+import { FontAwesome } from '@expo/vector-icons';
+import EntypoIcon from 'react-native-vector-icons/Entypo'; // Import the Entypo icon
+
+
+=======
 import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+>>>>>>> 53b2c98793402ee2bf4938e2a1d08dc907793091
 
 
 
@@ -21,16 +29,15 @@ const T1Screen1= ({ navigation }) => {
     // Dispatch action to fetch data when the component mounts
     dispatch(fetchData());
   }, [dispatch]);
+/////////////////////////////
 
-
-  
-
-
- // ... (other imports and code)
 
 return (
   <View>
     <Text>T1Screen1</Text>
+<<<<<<< HEAD
+    <Button title='Go to for sign up' onPress={() => navigation.navigate('T1Screen2')} />
+=======
     <TouchableOpacity  >
             <View style={styles.heading1} >
               <Ionicons name="person-add"
@@ -40,12 +47,13 @@ return (
             </View>
           </TouchableOpacity>
     <Button title='Go to second screen' onPress={() => navigation.navigate('T1Screen2')} />
+>>>>>>> 53b2c98793402ee2bf4938e2a1d08dc907793091
     {/* <Text>{JSON.stringify(data)}</Text> */}
     {data ? (
         data.length > 0 ? (
           
           <View >
-            <ScrollView>
+
             {data.map((item: any) => (<TouchableOpacity key={item.p_id} onPress={()=>navigation.navigate("T1Screen1modal1")}>
                 <View style={styles.card}>
                   <Text>{item.p_id}</Text>
@@ -56,7 +64,6 @@ return (
               // Replace 'item.id' with the property you want to display
 
             ))}
-            </ScrollView>
           </View>
         ) : (
           <Text>Loading...</Text>
@@ -64,7 +71,6 @@ return (
       ) : (
         <Text>Loading...</Text>
       )}
-    
 
   </View>
   
