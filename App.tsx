@@ -20,6 +20,8 @@ import T3Screen2 from './Navigation/Tab3/T3Screen2'
 import T3Screen3 from './Navigation/Tab3/T3Screen3'
 import T4Screen2 from './Navigation/Tab4/T4Screen2'
 import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
+import Login from './components/Authenticate.tsx/Login';
+import Signup from './components/Authenticate.tsx/Signup';
 
 
 
@@ -39,6 +41,8 @@ const App = () => {
         <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
         <Stack.Screen name='T1Screen2' component={T1Screen2} />
         <Stack.Screen name='T1Screen3' component={T1Screen3} />
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+        <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
         <Stack.Screen name='T1Screen1modal1' component={T1Screen1modal1}/>
 
       </Stack.Navigator>
@@ -96,6 +100,7 @@ const App = () => {
       >
         <Tab.Screen name='Tab1' component={Stack1}  options=
       {{
+        headerShown: false,
         tabBarLabel:'Home',
         tabBarIcon: ({color,size}) => (
         <FontAwesome name="home" color={color} size={size}/>
