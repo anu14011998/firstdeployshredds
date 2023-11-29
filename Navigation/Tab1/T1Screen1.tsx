@@ -4,16 +4,11 @@ import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../redux/actions/dashAction';
 import { StyleSheet } from 'react-native';
-<<<<<<< HEAD
 // import {  } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
 import EntypoIcon from 'react-native-vector-icons/Entypo'; // Import the Entypo icon
 
 
-=======
-import { ScrollView } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
->>>>>>> 53b2c98793402ee2bf4938e2a1d08dc907793091
 
 
 
@@ -35,19 +30,7 @@ const T1Screen1= ({ navigation }) => {
 return (
   <View>
     <Text>T1Screen1</Text>
-<<<<<<< HEAD
     <Button title='Go to for sign up' onPress={() => navigation.navigate('T1Screen2')} />
-=======
-    <TouchableOpacity  >
-            <View style={styles.heading1} >
-              <Ionicons name="person-add"
-                onPress={() => navigation.navigate('Login')}
-
-                size={30} color={'#00457E'} />
-            </View>
-          </TouchableOpacity>
-    <Button title='Go to second screen' onPress={() => navigation.navigate('T1Screen2')} />
->>>>>>> 53b2c98793402ee2bf4938e2a1d08dc907793091
     {/* <Text>{JSON.stringify(data)}</Text> */}
     {data ? (
         data.length > 0 ? (
