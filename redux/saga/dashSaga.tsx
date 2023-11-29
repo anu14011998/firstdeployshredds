@@ -37,7 +37,7 @@ import { FETCH_DATA,FETCH_FAILURE,FETCH_SUCCESS } from '../cosntants';
 // Sample API function to fetch data (replace with your API call)
 const fetchDataFromAPI = async () => {
   try {
-    const response = await fetch('https://shreddersbay.com/API/product_api.php?action=select');
+    const response = await fetch( 'https://shreddersbay.com/API/orders_api.php?action=select');
     const data = await response.json();
     return data;
   } catch (error) {

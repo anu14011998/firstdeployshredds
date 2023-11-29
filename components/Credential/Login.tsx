@@ -170,7 +170,6 @@ const Login = ({ navigation }: LoginProps) => {
 
             <TouchableOpacity onPress={() => { }}>
               <Text style={{ fontSize: 17, marginTop: 14, color: '#002699' }} >Forgot?</Text>
-              <Text>my name is anu agarwal</Text>
             </TouchableOpacity>
 
           </View>
@@ -183,7 +182,7 @@ const Login = ({ navigation }: LoginProps) => {
           </TouchableOpacity>
         </View>
 
-        <Text style={{ textAlign: 'center', color: '#666', marginTop: 20, marginBottom: 20 }}>
+        <Text style={{ alignItems: 'center', color: '#666', marginTop: 20, marginBottom: 20 }}>
           Or, login with ...
         </Text>
 
@@ -258,7 +257,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: '#fff',
     fontSize: 17,
-    textAlign: 'center',
+    alignItems: 'center',
     fontWeight: '600',
   },
   container4: {

@@ -1,7 +1,8 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
 // import ConCompo from './components/ConCompo'
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {MaterialIcons} from 'react-native-vector-icons'
 
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -20,8 +21,9 @@ import T3Screen2 from './Navigation/Tab3/T3Screen2'
 import T3Screen3 from './Navigation/Tab3/T3Screen3'
 import T4Screen2 from './Navigation/Tab4/T4Screen2'
 import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
-import Login from './components/Authenticate/Login';
-import Signup from './components/Authenticate/Signup';
+import Login from './components/Credential/Login';
+import Signup from './components/Credential/Signup';
+
 
 
 
@@ -107,9 +109,32 @@ const App = () => {
         <FontAwesome name="home" color={color} size={size}/>
         ),        
       }} />
-        <Tab.Screen name='Tab2' component={Stack2} />
-        <Tab.Screen name='Tab3' component={Stack3} />
-        <Tab.Screen name='Tab4' component={Stack4} />
+        <Tab.Screen name='Tab2' component={Stack2} 
+         options={{
+          tabBarLabel:'MyCart',
+          tabBarIcon: ({color,size}) => (
+            <MaterialCommunityIcons name="cart-outline" color={color} size={size}/>
+            ),
+         }}/>
+
+        <Tab.Screen name='Tab3' component={Stack3} 
+          options={{
+            tabBarLabel: 'Sell',
+            tabBarIcon: ({ color, size }) => (
+
+            <FontAwesome  name="sellsy" color={color} size={size}/>
+            ),
+          }}
+          />
+        <Tab.Screen name='Tab4' component={Stack4} 
+          options={{
+            tabBarLabel:'Setting',
+            tabBarIcon: ({color,size}) => (
+            <Ionicons name="settings" color={color} size={size} />
+             
+              ),
+           }}
+           />
       </Tab.Navigator>
     </NavigationContainer>
     </Provider>

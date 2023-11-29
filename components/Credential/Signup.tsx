@@ -269,7 +269,7 @@ const Signup = ({ navigation }: SignProps) => {
         <Text style=
           {
             {
-              textAlign: 'center',
+              alignItems: 'center',
               color: '#666',
               marginTop: 20,
               marginBottom: 20,
@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontFamily: 'sans-sarif',
+   
     fontSize: 30,
     fontWeight: '500',
     color: "#333",
@@ -425,7 +425,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: '#fff',
     fontSize: 17,
-    textAlign: 'center',
+    alignItems: 'center',
     fontWeight: '600',
   },
 
