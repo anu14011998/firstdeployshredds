@@ -170,6 +170,7 @@ const Login = ({ navigation }: LoginProps) => {
 
             <TouchableOpacity onPress={() => { }}>
               <Text style={{ fontSize: 17, marginTop: 14, color: '#002699' }} >Forgot?</Text>
+              <Text>my name is anu agarwal</Text>
             </TouchableOpacity>
 
           </View>

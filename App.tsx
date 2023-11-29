@@ -43,6 +43,7 @@ const App = () => {
         <Stack.Screen name='T1Screen3' component={T1Screen3} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
+        
         <Stack.Screen name='T1Screen1modal1' component={T1Screen1modal1}/>
 
       </Stack.Navigator>
