@@ -14,7 +14,7 @@ const data1 = [
 const LogoSlider = () => {
   return (
     <View>
-    
+    <Text style={styles.order}>What would you like to sell?</Text>
       <FlatList
         data={data1}
         renderItem={({ item, index }) => (
@@ -50,6 +50,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
     fontWeight: 'bold',
+    textAlign:'center',
+  },
+  order: {
+
+    fontSize: 25,
+    color: '#00457E',
+    // fontFamily: 'sans-sarif',
+    marginBottom: 20,
+    marginTop: 20
+
+
   },
 });
 

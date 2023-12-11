@@ -37,7 +37,7 @@ import { FETCH_DATA,FETCH_FAILURE,FETCH_SUCCESS } from '../cosntants';
 // Sample API function to fetch data (replace with your API call)
 const fetchDataFromAPI = async () => {
   try {
-    const response = await fetch( 'https://shreddersbay.com/API/orders_api.php?action=select');
+    const response = await fetch('https://shreddersbay.com/API/orders_api.php?action=select');
     const data = await response.json();
     return data;
   } catch (error) {
@@ -56,7 +56,7 @@ function* fetchDataWorker() {
   } catch (error) {
     yield put({ type: FETCH_FAILURE, payload: error.message });
     // Delay for a certain amount of time before retrying
-    yield delay(5000); // Delay for 5 seconds (adjust as needed)
+    yield delay(2000); // Delay for 5 seconds (adjust as needed)
     // The loop will repeat and attempt to fetch data again
   }
 }

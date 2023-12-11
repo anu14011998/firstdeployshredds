@@ -46,7 +46,7 @@ export default Aluminium
 const styles = StyleSheet.create({
     
      text3:{
-         alignItems: 'center',
+         textAlign: 'center',
            fontSize: 15,
            fontWeight: 'bold',
            color: 'black',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
                    icon:{
                width: 160,
                height: 140,
-               alignItems: 'center',
+               textAlign: 'center',
                borderRadius: 10,
                    },
        

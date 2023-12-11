@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal } from 'react-native'
+import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal, TouchableWithoutFeedback, RefreshControl } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,12 +12,15 @@ import LogoSlider from '../../components/OrderImage/LogoSlider';
 import Aluminium from '../../components/OrderImage/Aluminium';
 import CopperImage from '../../components/OrderImage/CopperImage';
 import T1Screen1modal1 from './T1Screen1modal1';
+import { BlurView } from 'react-native-blur';
+import ImageSlider from '../../components/OrderImage/ImageSlider';
 
 
 
 
 const T1Screen1 = ({ navigation }) => {
   const imgurl = 'https://shreddersbay.com/API/uploads/';
+  const [refreshing, setRefreshing]=useState(false);
 
   // const dispatch = useDispatch();
 
@@ -54,35 +57,43 @@ const T1Screen1 = ({ navigation }) => {
       return () => clearInterval(intervalId);
     }
   }, [data, dispatch]); // Add data as a dependency to re-run useEffect when data changes
-  /////////////////////////////
-  const [showModal, setshowModal] = useState(false);
+  // /////////////////////////////
+  // const [showModal, setshowModal] = useState(false);
 
-  
+  const onRefresh=()=>{
+    setRefreshing(true);
+    dispatch(fetchData());
+    setTimeout(()=>{
+      setRefreshing(false);
+      
+    },2000);
+  }
+
 
   return (
 
     <View style={styles.container}>
-<View>
+      {/* <View >
       <Modal transparent={true} 
       visible={showModal}
-      animationType='slide'
+      animationType='none'
        style={{margin: 20, padding: 20}}>
-        <View>
+        <View style={styles.Modalview}>
           <T1Screen1modal1  />
           <Button title="Close Modal" onPress={()=>setshowModal(false)} />
         </View>
       </Modal>
-</View>
+</View> */}
 
-
+{/* <Button title='test' onPress={()=>{navigation.navigate('T1Screen3')}}/> */}
 
       <View style={styles.logo}>
 
         <View style=
           {{
             flexDirection: 'row',
-            justifyContent: 'space-between',
-            gap: 100,
+            // justifyContent: 'space-between',
+            gap: 40,
           }}
         >
           <View style={{ flexDirection: 'row' }}>
@@ -95,7 +106,8 @@ const T1Screen1 = ({ navigation }) => {
 
           </View>
 
-          <TouchableOpacity  >
+<View style={{flexDirection: 'row', gap: 20, marginLeft: 20}}>
+       <TouchableOpacity  >
             <View style={styles.heading1} >
               <Ionicons name="person-add"
                 onPress={() => navigation.navigate('Login')}
@@ -103,6 +115,17 @@ const T1Screen1 = ({ navigation }) => {
                 size={30} color={'#00457E'} />
             </View>
           </TouchableOpacity>
+
+          <TouchableOpacity  >
+            <View style={styles.heading1} >
+              <FontAwesome name="shopping-cart"
+                onPress={() => navigation.navigate('ShoppingCart')}
+
+                size={30} color={'#00457E'} />
+            </View>
+          </TouchableOpacity>
+</View>
+         
 
         </View>
 
@@ -123,7 +146,20 @@ const T1Screen1 = ({ navigation }) => {
       </View>
 
       <View style={{ flex: 1 }} >
-        <ScrollView>
+        <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#0000ff']}
+            tintColor="#0000ff"
+          />
+        }>
+
+
+          <View>
+            <ImageSlider />
+          </View>
           <View>
             <LogoSlider />
           </View>
@@ -137,39 +173,98 @@ const T1Screen1 = ({ navigation }) => {
 
             <View style={styles.container3}>
 
-              <Text style={styles.order}>Order_Detail</Text>
+              <Text style={styles.order}>Fresh Recommendations</Text>
             </View>
 
-            <View style={styles.card1}>
+
+            <View style={styles.container5}>
+              <View style={styles.card1}>
 
                 {data.map((item, index) => (
-                  <TouchableOpacity onPress={()=>setshowModal(true)}>
-                  <View key={index} style={styles.card}>
+                 
+                    <View key={index} style={styles.card}>
 
-                    <View style={styles.imageContainer}>
+                      <View style={styles.imageContainer}>
 
-                      <Image
-                        source={{ uri: imgurl + item.filename }}
-                        style={styles.image}
-                      />
+                        <Image
+                          source={{ uri: imgurl + item.filename }}
+                          style={styles.image}
+                        />
+                      </View>
+
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textContainer2} >Name: {item.name}</Text>
+                        <Text style={styles.textContainer2}>Mobile: {item.mobile}</Text>
+                        <Text style={styles.textContainer2}>Booking Date: {item.booking_date}</Text>
+                     </View>
+
+                      <View style={styles.textContainer3}>
+
+                            <TouchableOpacity>
+                              {/* <Text style={styles.accept} >Aceept</Text> */}
+                              <FontAwesome name="check" style={styles.accept} />
+                            </TouchableOpacity>
+
+
+
+                            <TouchableOpacity>
+                              <Text style={styles.detail}
+                              onPress={() => navigation.navigate('Detail',{ bookingId: item.booking_id })}>
+                              Detail</Text>
+                              {/* <Ionicons name="information-circle-outline" style={styles.detail} /> */}
+                            </TouchableOpacity>
+
+                      </View>
+
                     </View>
 
-                    <View style={styles.textContainer}>
-                      <Text style={styles.textContainer2} >Name: {item.name}</Text>
-                      <Text style={styles.textContainer2}>Mobile: {item.mobile}</Text>
-                      <Text style={styles.textContainer2}>Booking Date: {item.booking_date}</Text>
-                      <Text style={styles.textContainer2}>Cancel Date: {item.canceled_date}</Text>
-                      {/* <Text style={styles.textContainer2}>Booking id: {item.booking_id}</Text> */}
 
-                    </View>
-                    {/* //////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// */}
-                  </View>
-                  </TouchableOpacity>
+               
+
+
 
                 ))}
 
+              </View>
+              {/* <View style={styles.card1}>
+
+                {data.map((item, index) => (
+                  <TouchableOpacity >
+                    <View key={index} style={styles.card}>
+
+                      <View style={styles.imageContainer}>
+
+                        <Image
+                          source={{ uri: imgurl + item.filename }}
+                          style={styles.image}
+                        />
+                      </View>
+
+                      <View style={styles.textContainer}>
+                        <Text style={styles.textContainer2} >Name: {item.name}</Text>
+                        <Text style={styles.textContainer2}>Mobile: {item.mobile}</Text>
+                        <Text style={styles.textContainer2}>Booking Date: {item.booking_date}</Text>
+                        <Text style={styles.textContainer2}>Cancel Date: {item.canceled_date}</Text>
+
+
+                      </View>
+
+                    </View>
+
+
+                  </TouchableOpacity>
+
+
+
+                ))}
+
+              </View> */}
+
+
             </View>
-            <Text>{JSON.stringify(data)}</Text>
+
+
+            {/* <Text>{JSON.stringify(data)}</Text> */}
 
 
           </View>
@@ -228,7 +323,6 @@ const T1Screen1 = ({ navigation }) => {
 const styles = StyleSheet.create({
 
 
-
   heading1: {
     marginTop: 10,
 
@@ -237,13 +331,12 @@ const styles = StyleSheet.create({
   accept: {
 
     fontSize: 20,
-    color: '#fff',
+    color: 'black',
     borderWidth: 1,
-    borderRadius: 2,
+    borderRadius: 50,
     padding: 8,
     borderColor: 'transparent',
-
-    backgroundColor: '#00e600',
+    backgroundColor: '#ddd',
 
   },
 
@@ -261,23 +354,19 @@ const styles = StyleSheet.create({
 
   detail: {
 
-    fontSize: 20,
-    color: '#fff',
+    fontSize: 16,
+    color: 'black',
+    borderColor: 'transparent',
     borderWidth: 1,
-    borderRadius: 2,
-    paddingHorizontal: 12,
-    paddingVertical: 5,
-    backgroundColor: '#00457E',
+    borderRadius: 90,
+    paddingHorizontal: 18,
+    paddingVertical: 6,
+    backgroundColor: '#ddd',
 
   },
 
-  card1: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+ 
 
-
-  },
   image1: {
 
     width: 50,
@@ -285,61 +374,73 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    borderColor: 'blue',
-    borderWidth: 1,
-    width: 180,
-    height: 350,
-    padding: 10,
-    margin: 5,
-    shadowColor: '#00457E',
-    shadowOffset: { width: 5, height: 2 },
-    shadowOpacity: 0.8,
-    elevation: 5,
-    // Arrange child elements horizontally
+  card1: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginVertical: 10,
   },
-  imageContainer: {
-    flex: 2, // Take up 1/2 of the horizontal space
-    marginRight: 20,
-    alignItems: 'center', // Add some space between the image and text
+
+
+  card: {
+    width: '48%', // Adjust width as per your requirement
+    marginBottom: 10,
+    padding: 1,
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: 'gray',
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+    // elevation: 5,
   },
 
   textContainer: {
+      padding: 10,
+    },
+
+  textContainer3: {
+    
+    flexDirection: 'row',
+    marginTop: 20,
+    gap: 25,
+    padding: 7,
 
   },
 
   textContainer2: {
-    color: 'blue',
-    fontSize: 15,
-    padding: 2,
-
+    fontSize: 13,
+    color: 'gray',
+    marginBottom: 5,
   },
 
-  textContainer3: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 40,
-    gap: 25,
-
+  imageContainer: {
+    width: '100%',
+    height: 120,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    overflow: 'hidden',
+    alignItems: 'center',
   },
 
 
   logo: {
 
     flexDirection: 'row',
-    alignItems: 'center'
+    // alignItems: 'center'
     // textAlign: 'center
-
-
-
 
   },
 
   container: {
     flex: 1,
-    marginTop: 10,
+    marginTop: 20,
     padding: 10,
     backgroundColor: 'white',
 
@@ -448,8 +549,9 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 100,
-    marginRight: 10,
+    width: 140,
+    marginTop: 5,
+    
 
 
   },

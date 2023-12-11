@@ -11,7 +11,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: rootReducer,
+  
   middleware: [sagaMiddleware],
+
 });
 
 sagaMiddleware.run(watchFetchData);

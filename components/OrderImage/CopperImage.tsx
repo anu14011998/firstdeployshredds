@@ -57,17 +57,17 @@ const styles = StyleSheet.create({
 
 
     text3:{
-  alignItems: 'center',
+    textAlign: 'center',
     fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
     marginTop: 6,
 
     },
-            icon:{
-        width: 150,
-        height: 130,
-        alignItems: 'center',
+     icon:{
+        width: 160,
+        height: 140,
+        textAlign: 'center',
         borderRadius: 10,
             },
 

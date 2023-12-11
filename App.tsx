@@ -23,6 +23,12 @@ import T4Screen2 from './Navigation/Tab4/T4Screen2'
 import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
 import Login from './components/Credential/Login';
 import Signup from './components/Credential/Signup';
+import shoppingCart from './components/ShoppingCart';
+import ShoppingCart from './components/ShoppingCart';
+import HandleSellADDSumit from './Navigation/Tab3/HandleSellADDSumit';
+import OpenCamAndGalT3S1 from './Navigation/Tab3/OpenCamAndGalT3S1';
+import T2Screen3AddAddress2 from './Navigation/Tab2/T2Screen3AddAddress2';
+import T2Screen2AddAddress from './Navigation/Tab2/T2Screen2AddAddress';
 
 
 
@@ -45,7 +51,9 @@ const App = () => {
         <Stack.Screen name='T1Screen3' component={T1Screen3} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
-        
+        <Stack.Screen name='ShoppingCart' component={ShoppingCart} options={{
+          headerTitle: '', // Hide the header title
+        }}/>
         <Stack.Screen name='T1Screen1modal1' component={T1Screen1modal1}/>
 
       </Stack.Navigator>
@@ -55,8 +63,18 @@ const App = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen name='T2Screen1' component={T2Screen1} options={{ headerShown: false }} />
+        <Stack.Screen
+        name='T2Screen2AddAddress'
+        component={T2Screen2AddAddress} 
+        options ={{headerShown: false}}
+        />
+
+        <Stack.Screen name='T2Screen3AddAddress2' component={T2Screen3AddAddress2} />
         <Stack.Screen name='T2Screen2' component={T2Screen2} />
         <Stack.Screen name='T2Screen3' component={T2Screen3} />
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+        <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
+        <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     )
@@ -64,9 +82,14 @@ const App = () => {
   const Stack3 = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name='T3Screen1' component={T3Screen1} options={{ headerShown: false }} />
+        <Stack.Screen name='T3Screen1' component={T3Screen1} options={{ headerShown: false , headerTitle: '' }} />
         <Stack.Screen name='T3Screen2' component={T3Screen2} />
         <Stack.Screen name='T3Screen3' component={T3Screen3} />
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+        <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
+        <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
+        <Stack.Screen name='HandleSellADDSumit' component={HandleSellADDSumit} />
+        <Stack.Screen name='OpenCamAndGalScreen' component={OpenCamAndGalT3S1} options={{headerShown:false}}/>
 
       </Stack.Navigator>
     )
@@ -77,6 +100,9 @@ const App = () => {
         <Stack.Screen name='T3Screen1' component={T4Screen1} options={{ headerShown: false }} />
         <Stack.Screen name='T3Screen2' component={T4Screen2} />
         <Stack.Screen name='T3Screen3' component={T4Screen1} />
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+        <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
+        <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     )
@@ -109,22 +135,28 @@ const App = () => {
         <FontAwesome name="home" color={color} size={size}/>
         ),        
       }} />
-        <Tab.Screen name='Tab2' component={Stack2} 
+        <Tab.Screen name='Scrap Cart' component={Stack2} 
          options={{
-          tabBarLabel:'MyCart',
+          headerTitle:'Scrap Cart',
+          headerTitleAlign:'center',
+          // headerShown: false,
+          tabBarLabel:'Scrap Cart',
           tabBarIcon: ({color,size}) => (
-            <MaterialCommunityIcons name="cart-outline" color={color} size={size}/>
+            <FontAwesome name="shopping-cart" color={color} size={size}/>
             ),
          }}/>
 
-        <Tab.Screen name='Tab3' component={Stack3} 
+        <Tab.Screen name='Scrap Item' component={Stack3} 
+
           options={{
             tabBarLabel: 'Sell',
             tabBarIcon: ({ color, size }) => (
 
             <FontAwesome  name="sellsy" color={color} size={size}/>
             ),
+           
           }}
+          
           />
         <Tab.Screen name='Tab4' component={Stack4} 
           options={{
