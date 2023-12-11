@@ -261,7 +261,8 @@ const T2Screen2AddAddress = ({ navigation }) => {
             style=
             {{
               
-              fontSize: 20
+              fontSize: 20,
+              textAlign: 'center',
             }}
             >Deliver Here</Text>
           </TouchableOpacity>

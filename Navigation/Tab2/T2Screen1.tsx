@@ -373,7 +373,7 @@ const T2Screen1 = ({ navigation }) => {
 
       {/* <Button title='goto address screen'onPress={()=>{navigation.navigate("T2Screen2")}}/> */}
 
-      <ScrollView style={styles.scrollView}>
+      <ScrollView >
         {data ? (
           data.map((item: any) => (
             <View key={item.id} style={styles.card}>
@@ -542,9 +542,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
-  scrollView: {
-    flex: 1,
-  },
+  // scrollView: {
+  //   flex: 1,
+  // },
   card: {
     flexDirection: 'row',
     justifyContent: 'space-between',
