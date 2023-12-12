@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal, TouchableWithoutFeedback, RefreshControl } from 'react-native'
+import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal, TouchableWithoutFeedback, RefreshControl, Pressable, Alert } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +21,10 @@ import ImageSlider from '../../components/OrderImage/ImageSlider';
 const T1Screen1 = ({ navigation }) => {
   const imgurl = 'https://shreddersbay.com/API/uploads/';
   const [refreshing, setRefreshing]=useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+
+
 
   // const dispatch = useDispatch();
 
@@ -72,7 +76,31 @@ const T1Screen1 = ({ navigation }) => {
 
   return (
 
+
+
     <View style={styles.container}>
+
+
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+   </Modal>
       {/* <View >
       <Modal transparent={true} 
       visible={showModal}
@@ -178,11 +206,22 @@ const T1Screen1 = ({ navigation }) => {
 
 
             <View style={styles.container5}>
+
+           <Pressable onPress={() => setModalVisible(true)}>
               <View style={styles.card1}>
 
                 {data.map((item, index) => (
                  
-                    <View key={index} style={styles.card}>
+                 
+                    <View key={index} style={styles.card}
+                  
+                    >
+
+      {/* <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}>
+        <Text style={styles.textStyle}>Show Modal</Text>
+      </Pressable> */}
 
                       <View style={styles.imageContainer}>
 
@@ -193,7 +232,7 @@ const T1Screen1 = ({ navigation }) => {
                       </View>
 
                       <View style={styles.textContainer}>
-                        <Text style={styles.textContainer2} >Name: {item.name}</Text>
+                        <Text style={styles.textContainer2}>Name: {item.name}</Text>
                         <Text style={styles.textContainer2}>Mobile: {item.mobile}</Text>
                         <Text style={styles.textContainer2}>Booking Date: {item.booking_date}</Text>
                      </View>
@@ -217,7 +256,7 @@ const T1Screen1 = ({ navigation }) => {
                       </View>
 
                     </View>
-
+               
 
                
 
@@ -226,6 +265,8 @@ const T1Screen1 = ({ navigation }) => {
                 ))}
 
               </View>
+
+            </Pressable>
               {/* <View style={styles.card1}>
 
                 {data.map((item, index) => (
@@ -263,7 +304,6 @@ const T1Screen1 = ({ navigation }) => {
 
             </View>
 
-
             {/* <Text>{JSON.stringify(data)}</Text> */}
 
 
@@ -275,7 +315,6 @@ const T1Screen1 = ({ navigation }) => {
           </View>
 
         </ScrollView>
-
       </View>
 
     </View>
@@ -321,6 +360,56 @@ const T1Screen1 = ({ navigation }) => {
 
 }
 const styles = StyleSheet.create({
+
+
+
+  // 
+
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+
+
+  // 
 
 
   heading1: {
