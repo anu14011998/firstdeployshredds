@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text , TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
 // import ConCompo from './components/ConCompo'
 import { FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
@@ -69,7 +69,15 @@ const App = () => {
         options ={{headerShown: false}}
         />
 
-        <Stack.Screen name='T2Screen3AddAddress2' component={T2Screen3AddAddress2} />
+        <Stack.Screen
+        name='T2Screen3AddAddress2'
+        component={T2Screen3AddAddress2} 
+        options ={{headerShown: false}}
+                 
+        
+         />
+
+
         <Stack.Screen name='T2Screen2' component={T2Screen2} />
         <Stack.Screen name='T2Screen3' component={T2Screen3} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
@@ -135,16 +143,33 @@ const App = () => {
         <FontAwesome name="home" color={color} size={size}/>
         ),        
       }} />
+
+
         <Tab.Screen name='Scrap Cart' component={Stack2} 
-         options={{
+         options={({ navigation }) =>
+  ({
+
           headerTitle:'Scrap Cart',
           headerTitleAlign:'center',
+          // headerLeft: () => (
+          //   <FontAwesome
+          //     name="arrow-left"
+          //     size={25}
+          //     color="black"
+          //     style={{ marginLeft: 10 }}
+          //     onPress={() => navigation.navigate('T2Screen1')}
+          //   />
+          // ),
           // headerShown: false,
           tabBarLabel:'Scrap Cart',
           tabBarIcon: ({color,size}) => (
             <FontAwesome name="shopping-cart" color={color} size={size}/>
             ),
-         }}/>
+         
+  })
+        }
+         
+         />
 
         <Tab.Screen name='Scrap Item' component={Stack3} 
 

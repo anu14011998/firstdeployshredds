@@ -110,12 +110,7 @@ const T2Screen2AddAddress = ({ navigation }) => {
     
     const fileObject = sellFormData.file;
     // const name = sellFormData.file ? sellFormData.file.name : undefined;
-    
-
-
     const addrId = address.addr_id;
-
-
     const formData = new FormData();
     formData.append('user_id', userId);
     formData.append('approx_weight', weight);
@@ -255,18 +250,21 @@ const T2Screen2AddAddress = ({ navigation }) => {
       {/* ... (bottomButton code remains the same) */}
       <View style={styles.bottomView1}>
         
-        <View style={styles.bottomButton1}>
-          <TouchableOpacity onPress={continueWithChoosenDate}>
-            <Text 
-            style=
-            {{
-              
-              fontSize: 20,
-              textAlign: 'center',
-            }}
-            >Deliver Here</Text>
+      
+          <TouchableOpacity 
+           onPress={continueWithChoosenDate}
+           style={styles.touchableOpacityStyle1}
+          >
+
+            <Text  style={styles.textStyle1}>
+                Deliver Here  <FontAwesome style={{fontSize: 20}} name ="long-arrow-right" />
+            
+            </Text>
+
+           
+         
           </TouchableOpacity>
-        </View>
+       
       </View>
     </View>
   );
@@ -274,6 +272,28 @@ const T2Screen2AddAddress = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
+
+ 
+
+  touchableOpacityStyle1: {
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    width: 500,
+   
+    // Other styles
+  },
+  textStyle1: {
+    fontSize: 18,
+    color: '#fff',
+    backgroundColor: 'black',
+    textAlign: 'center',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 5,
+    // Other styles
+  },
+
   cardContainer: {
     marginTop: 20, // Adjust the margin as per your requirement
     shadowColor: '#000',
@@ -294,7 +314,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   bottomButton: {
-    backgroundColor: 'skyblue', // Adjust as needed
+   
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -302,18 +322,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     marginBottom: 0,
     borderRadius: 5,
+    
   },
   bottomView1: {
     position: 'absolute',
     width: '100%',
-    top: 510,
+    top: 530,
     bottom: 0,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     flexDirection: 'row',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+  
   },
 
   container: {
@@ -332,7 +353,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     margin: 5,
-    padding: 8,
+    padding: 12,
+    borderRadius:6,
   },
   addaddress: {
     marginRight: 10,

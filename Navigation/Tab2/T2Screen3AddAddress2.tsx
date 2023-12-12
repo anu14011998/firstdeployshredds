@@ -470,14 +470,21 @@ fetchData();
   };
 
 
+  const [alertShown, setAlertShown] = useState(false);
 
+  const displayAlert = () => {
+    const message = 'Please enter all required fields:\nCountry, State, City, Area, Address,\nLandmark, Pincode';
+    Alert.alert('Error', message);
+  };
   ////////////////////////////////////////////////////////////
 
   // const handlefinalsubmit=()=>{
   //   Alert.alert(`${selectedCountryId},${selectedStateId},${selectedCityId},${selectedAreaId},${address},${landmark},${pincode},${user_id}`)
   // }
   const handlefinalsubmit = () => {
-    // Prepare form data
+    if(selectedAreaId && selectedStateId && selectedCityId && selectedAreaId && address && landmark && pincode && user_id){
+
+       // Prepare form data
     const formData = new FormData();
     formData.append('country_id', selectedCountryId);
     formData.append('state_id', selectedStateId);
@@ -487,7 +494,12 @@ fetchData();
     formData.append('landmark', landmark);
     formData.append('pincode', pincode);
     formData.append('user_id', user_id);
-  
+
+
+   
+
+
+
     // Make the POST request
     fetch('https://shreddersbay.com/API/address_api.php?action=insert', {
       method: 'POST',
@@ -522,32 +534,82 @@ fetchData();
     .catch(error => {
       // Handle errors
       console.error('Error:', error);
+      
       // Show an alert or perform any action in case of an error
-      Alert.alert('Error', 'There was an error submitting the data');
+      // Alert.alert('Error', 'There was an error submitting the data');
+    
     });
+   
+    }
+    else
+    setAlertShown(!alertShown);
+    if (!alertShown) {
+      displayAlert(); // Display the full message alert
+      setAlertShown(false); // Set the flag to true to indicate the alert has been shown
+    }
+   
+  
   };
   
   /////////////////////////////////////////////////////////////
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* Country Picker */}
-      <Picker
+
+    
+    <View style=
+    {{
+        justifyContent: 'center', 
+        alignItems: 'center',
+        margin: 5,
+        padding: 10,
+        backgroundColor: 'white',
+    }}
+    >
+
+      <View 
+      style=
+      {{
+
+        justifyContent: 'center',
+        borderWidth: 1,
+        padding: 0,
+        borderColor: 'lightgray',
+        borderRadius: 10,
+        marginTop: 10,
+      }}
+      >
+   {/* Country Picker */}
+   <Picker
         selectedValue={selectedCountryId}
-        style={{ height: 50, width: 200 }}
-        itemStyle={{ fontSize: 18, color: 'blue', backgroundColor: 'lightgray', paddingHorizontal: 10 }}
+        style={{ height: 50, width: 270   }}
+        itemStyle={{ fontSize: 18, color: 'blue', backgroundColor: 'lightgray', paddingHorizontal: 5 }}
         onValueChange={(itemValue) => handleCountrySelection(itemValue)}
       >
-        <Picker.Item label="Select Country" value="" />
+
+        <Picker.Item label="Select Country" value=""
+        />
         {countries.map((country) => (
           <Picker.Item key={country.country_id} label={country.country_name} value={country.country_id} />
         ))}
-      </Picker>
 
-      {/* State Picker */}
-      <Picker
+      </Picker>
+      </View>
+   
+
+      <View  style=
+      {{
+
+        justifyContent: 'center',
+        borderWidth: 1,
+        padding: 0,
+        borderColor: 'lightgray',
+        borderRadius: 10,
+        marginTop: 10,
+      }}>
+        {/* State Picker */}
+     <Picker
         selectedValue={selectedStateId}
-        style={{ height: 50, width: 200 }}
+        style={{ height: 50, width: 270 }}
         itemStyle={{ fontSize: 18, color: 'blue', backgroundColor: 'lightgray', paddingHorizontal: 10 }}
         onValueChange={(itemValue) => handleStateSelection(itemValue)}
       >
@@ -557,10 +619,26 @@ fetchData();
         ))}
       </Picker>
 
+      </View>
+
+     
+ <View  style=
+      {{
+
+        justifyContent: 'center',
+        borderWidth: 1,
+        padding: 0,
+        borderColor: 'lightgray',
+        borderRadius: 10,
+        marginTop: 10,
+      }}>
+      
+      {/* <Text>State</Text> */}
+
       {/* City Picker */}
       <Picker
         selectedValue={selectedCityId}
-        style={{ height: 50, width: 200 }}
+        style={{ height: 50, width: 270 }}
         itemStyle={{ fontSize: 18, color: 'blue', backgroundColor: 'lightgray', paddingHorizontal: 10 }}
         onValueChange={(itemValue) => handleCitySelection(itemValue)}
       >
@@ -569,11 +647,22 @@ fetchData();
           <Picker.Item key={city.city_id} label={city.city_name} value={city.city_id} />
         ))}
       </Picker>
+</View>
+      
+     
+<View style=
+      {{
 
-      {/* Area Picker */}
-      <Picker
+        justifyContent: 'center',
+        borderWidth: 1,
+        padding: 0,
+        borderColor: 'lightgray',
+        borderRadius: 10,
+        marginTop: 10,
+      }}>
+<Picker
         selectedValue={selectedAreaId}
-        style={{ height: 50, width: 200 }}
+        style={{ height: 50, width: 270 }}
         itemStyle={{ fontSize: 18, color: 'blue', backgroundColor: 'lightgray', paddingHorizontal: 10 }}
         onValueChange={(itemValue) => handleAreaSelection(itemValue)}
       >
@@ -582,19 +671,50 @@ fetchData();
           <Picker.Item key={area.area_id} label={area.area_name} value={area.area_id} />
         ))}
       </Picker>
+</View>
+      {/* Area Picker */}
+   
+{/*       
+      <Text>Area</Text> */}
+
+      <View style={{marginTop: 20}}>
       <TextInput placeholder='address' style={styles.text} value={address} onChangeText={setaddress}/>
       <TextInput placeholder='landmark' style={styles.text} value={landmark} onChangeText={setlandmark}/>
       <TextInput placeholder='pincode' style={styles.text} value={pincode} onChangeText={setpincode}/>
-      <View style={{backgroundColor:'gray',margin:20,}}>
+      </View>
+     
+      <View style={{margin:20,}}>
         <TouchableOpacity onPress={handlefinalsubmit}>
-          <Text>Click here to Add Address</Text>
+          <Text style={styles.btn2} >Save Address</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  text:{borderWidth:2,borderColor:'black',borderRadius:10,height:40,width:'80%', textAlign:'center'}
+
+  btn2:{
+ borderWidth: 1,
+ padding: 10,
+ borderRadius: 5,
+ fontSize: 18,
+ color: 'white',
+ backgroundColor: 'green',
+ borderColor: 'green',
+  },
+
+  text:
+  {
+    borderWidth:2,
+    borderColor:'gray',
+    borderRadius:10,
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    fontSize: 20,
+    width: 330,
+   color: 'black',
+   marginBottom: 10,
+  }
 })
 
 export default T2Screen3AddAddress2;

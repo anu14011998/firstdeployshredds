@@ -375,8 +375,8 @@ const T2Screen1 = ({ navigation }) => {
 
       <ScrollView >
         {data ? (
-          data.map((item: any) => (
-            <View key={item.id} style={styles.card}>
+          data.map((item: any,index:number) => (
+            <View key={index} style={styles.card}>
 
 
               <View style={styles.imageContainer}>
@@ -442,7 +442,6 @@ const T2Screen1 = ({ navigation }) => {
                 </Text>
 
               </View>
-
 
               <View style={styles.deleteIconContainer}>
 
@@ -510,6 +509,8 @@ const T2Screen1 = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+
+  
 
   imageContainer: {
     flex: 0.7, // Equal width for image container

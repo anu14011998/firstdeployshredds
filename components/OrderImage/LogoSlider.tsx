@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
     fontWeight: 'bold',
-    textAlign:'center',
+   alignSelf: 'center',
   },
   order: {
 
