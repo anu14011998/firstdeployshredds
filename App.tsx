@@ -29,6 +29,7 @@ import HandleSellADDSumit from './Navigation/Tab3/HandleSellADDSumit';
 import OpenCamAndGalT3S1 from './Navigation/Tab3/OpenCamAndGalT3S1';
 import T2Screen3AddAddress2 from './Navigation/Tab2/T2Screen3AddAddress2';
 import T2Screen2AddAddress from './Navigation/Tab2/T2Screen2AddAddress';
+import * as Permissions from 'expo-permissions';
 
 
 
@@ -40,6 +41,10 @@ import T2Screen2AddAddress from './Navigation/Tab2/T2Screen2AddAddress';
 
 
 const App = () => {
+
+
+
+
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
 

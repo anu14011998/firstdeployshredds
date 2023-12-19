@@ -1,11 +1,23 @@
 {
   "expo": {
     "name": "second_project",
-    "slug": "second_project",
-    "version": "1.0.0",
+    "slug": "shreddersbay",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "permissions": [
+      "INTERNET"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "899a3d51-4ab2-46d5-a140-644e3ad1b7be"
+      }
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -15,21 +27,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shreddersbay"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.shreddersbay"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "f2668d18-e181-462b-8f75-07fcfae76917"
-      }
-    }
+    "owner": "vinitrathore"
   }
 }

@@ -291,7 +291,6 @@ const T3Screen1 = ({ navigation }) => {
   const [userDataLOCAL_STORAGE, setUserDataLocalStorage] = useState(null);
 
   /////////////////data for passing probs //////////
-  const [user_id, setUserIds] = useState(null) // User ID
   const [capturedImage, setCapturedImage] = useState<string | null>(null);///image
   const [textInputValue, setTextInputValue] = useState('');  ///weight
   const [price, setprice] = useState(" ")///raw price 
@@ -315,6 +314,7 @@ const T3Screen1 = ({ navigation }) => {
 
 
   //////////////////////////////
+  const [user_id, setUserIds] = useState(null) // User ID
 
   useEffect(() => {
     const fetchData = async () => {
