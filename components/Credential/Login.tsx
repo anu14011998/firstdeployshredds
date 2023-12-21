@@ -297,7 +297,7 @@ import { useDispatch } from 'react-redux';
 // import { setUserId } from '../Context/userSlice';
 import { useNavigation } from '@react-navigation/native'
 import { CommonActions } from '@react-navigation/native';
-import { setUserData } from '../../redux/actions/loginAction';
+import { setLoginData } from '../../redux/actions/loginAction';
 
 
 // const Login = ({ navigation }: LoginProps) => {
@@ -387,7 +387,7 @@ const Login = ({ navigation }: LoginProps) => {
           // const data = await response.json()
           console.log("my id is:--", userId);
 
-          dispatch(setUserData(responseData));
+          dispatch(setLoginData(responseData));
 
 
           try {

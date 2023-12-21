@@ -1,7 +1,6 @@
-// loginActions.js
-import { SET_USER_DATA } from "../cosntants";
-
-export const setUserData = (userData) => ({
-  type: SET_USER_DATA,
-  payload: userData,
-});
+import { SET_LOGIN_DATA } from "../cosntants";
+ 
+export const setLoginData =(jsondata:any)=>({
+    type:SET_LOGIN_DATA,
+    payload:jsondata,
+})

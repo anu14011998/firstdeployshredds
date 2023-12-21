@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
     },
     icon: {
-        width: 160,
+        width: 140,
         height: 140,
         alignSelf: 'center',
         borderRadius: 10,

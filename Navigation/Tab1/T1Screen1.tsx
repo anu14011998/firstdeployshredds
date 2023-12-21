@@ -187,7 +187,7 @@ const T1Screen1 = ({ navigation }) => {
           visible={modalVisible}
 
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+          
             setModalVisible(!modalVisible);
           }}>
 
@@ -274,8 +274,8 @@ const T1Screen1 = ({ navigation }) => {
                         <Text style={{ color: 'black', fontWeight: '600',fontSize: 16  }}>Mobile: {item.mobile}</Text>
                         <Text style={{ color: 'black', fontWeight: '600',fontSize: 16  }}>Area: {item.area}</Text>
                         <Text style={{ color: 'black', fontWeight: '600', fontSize: 16 }}>Address: {item.address}</Text>
-                        <Text style={{ color: 'black', fontWeight: '600',fontSize: 16  }}>Landmark: {item.landmark}</Text>
-                        <Text style={{ color: 'black', fontWeight: '600',fontSize: 16  }}>Pincode: {item.pin_code}</Text>
+                        <Text style={{ color: 'black', fontWeight: '600', fontSize: 16 }}>Landmark: {item.landmark}</Text>
+                        <Text style={{ color: 'black', fontWeight: '600',fontSize: 16 }}>Pincode: {item.pin_code}</Text>
                       </View>
 
 
@@ -318,7 +318,7 @@ const T1Screen1 = ({ navigation }) => {
           <View style={{ flexDirection: 'row' }}>
             <Image
               style={styles.image1}
-              source={require('../../assets/logo.png')}
+              source={require('../../assets/SHREDS.png')}
             />
 
             <Text style={styles.heading}>ShreddersBay</Text>
@@ -330,16 +330,15 @@ const T1Screen1 = ({ navigation }) => {
               <View style={styles.heading1} >
                 <Ionicons name="person-add"
                   onPress={() => navigation.navigate('Login')}
-
                   size={30} color={'#00457E'} />
               </View>
             </TouchableOpacity>
+            
 
             <TouchableOpacity  >
               <View style={styles.heading1} >
                 <FontAwesome name="shopping-cart"
                   onPress={() => navigation.navigate('ShoppingCart')}
-
                   size={30} color={'#00457E'} />
               </View>
             </TouchableOpacity>
@@ -384,9 +383,7 @@ const T1Screen1 = ({ navigation }) => {
             <LogoSlider />
           </View>
 
-          <View>
-            < Aluminium />
-          </View>
+         
 
           <View>
 
@@ -444,7 +441,10 @@ const T1Screen1 = ({ navigation }) => {
 
           </View>
 
-
+          <View>
+            < Aluminium />
+          </View>
+          
           <View>
             <CopperImage />
           </View>
@@ -574,7 +574,7 @@ height: 100,
 
     width: 50,
     height: 50,
-    marginRight: 20,
+    marginRight: 8,
   },
 
   card1: {
