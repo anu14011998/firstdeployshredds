@@ -97,11 +97,43 @@
 
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const T4Screen1 = () => {
   return (
     <View>
       <Text>T4Screen1</Text>
+      <View>
+        <TouchableOpacity>
+          <Text>
+            Logout
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity>
+          <Text>
+            Notifications
+          </Text>
+          <Text>
+            Recommendations & Special communications
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity>
+          <Text>
+            Logout from all devices 
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity>
+          <Text>
+            Delete account
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -109,6 +141,9 @@ const T4Screen1 = () => {
 export default T4Screen1
 
 const styles = StyleSheet.create({
+  button:{
+    
+  }
   
 })
 
