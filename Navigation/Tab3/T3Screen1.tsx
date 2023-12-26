@@ -320,19 +320,31 @@
 // };
 
 
-import { View, Text, StyleSheet, ScrollView, RefreshControl, Button, Image, TouchableOpacity, TextInput, Alert } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, RefreshControl, Button, Image, TouchableOpacity, TextInput, Alert, } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Picker } from '@react-native-picker/picker'
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+
+
+
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-// import { Stack2ParamList, Stack3ParamList } from '../../App';
-// import { TabName, ScreenName } from '../../App';
+import { Platform } from 'react-native';
+
+
+
 
 const T3Screen1 = ({navigation}) => {
+
+
+
+
   return (
+
+    
     <View>
       <Dropdowns navigation={navigation}/>
     </View>
@@ -782,6 +794,9 @@ const Dropdowns = ({navigation}) => {
 
   return (
 
+ 
+  
+  
     <View style={{backgroundColor: '#fff'}}
     >
     <View style={{ marginTop: 30,
@@ -853,6 +868,7 @@ const Dropdowns = ({navigation}) => {
           </Picker>
         </View>
 
+      
 
         <View  style={styles.radioButtonContainer}>
         <View>
@@ -863,10 +879,15 @@ const Dropdowns = ({navigation}) => {
             onChangeText={handleNumericInputChange}
             style={styles.textInput}
             keyboardType="numeric"
+            
           />
         </View>
         {productname || price ? <Text style={{ color: 'blue', }}> price of {productname}:-{price} </Text> : null}
         </View>
+        
+
+
+
        
         <View style={styles.imageContainer}>
         
@@ -955,6 +976,7 @@ const Dropdowns = ({navigation}) => {
       </ScrollView>
     </View>
     </View>
+
   )
 }
 

@@ -312,7 +312,7 @@ const T1Screen1 = ({ navigation }) => {
           {{
             flexDirection: 'row',
             // justifyContent: 'space-between',
-            gap: 40,
+            gap: 20,
           }}
         >
           <View style={{ flexDirection: 'row' }}>
@@ -444,7 +444,7 @@ const T1Screen1 = ({ navigation }) => {
           <View>
             < Aluminium />
           </View>
-          
+
           <View>
             <CopperImage />
           </View>

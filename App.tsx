@@ -1,5 +1,5 @@
-import { View, Text , TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, Text , TouchableOpacity, Keyboard,KeyboardAvoidingView, Platform } from 'react-native'
+import React, { useEffect, useState } from 'react'
 // import ConCompo from './components/ConCompo'
 import { FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {MaterialIcons} from 'react-native-vector-icons'
@@ -40,6 +40,7 @@ import * as Permissions from 'expo-permissions';
 
 
 const App = () => {
+
 
 
 
@@ -144,12 +145,16 @@ const App = () => {
   }
 
   return (
-    <Provider store={store}>
+
     
+    <Provider store={store}>
+   
+
     <NavigationContainer>
       <Tab.Navigator  initialRouteName='T1Screen'
         screenOptions={({ route }) => ({
-        unmountOnBlur: true, // Unmount the screen when it's not visible
+
+         unmountOnBlur: true, // Unmount the screen when it's not visible
           
           tabBarActiveTintColor:'#483948',
           tabBarInactiveTintColor:'black',
@@ -223,6 +228,9 @@ const App = () => {
            />
       </Tab.Navigator>
     </NavigationContainer>
+
+
+  
     </Provider>
     
 
