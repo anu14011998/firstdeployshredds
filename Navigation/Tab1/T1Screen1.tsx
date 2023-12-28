@@ -338,7 +338,7 @@ const T1Screen1 = ({ navigation }) => {
             <TouchableOpacity  >
               <View style={styles.heading1} >
                 <FontAwesome name="shopping-cart"
-                  onPress={() => navigation.navigate('ShoppingCart')}
+                  onPress={() => navigation.navigate('T2Screen1')}
                   size={30} color={'#00457E'} />
               </View>
             </TouchableOpacity>

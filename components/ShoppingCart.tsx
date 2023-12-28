@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const ShoppingCart = () => {
+const ShoppingCart = ({navigation}) => {
      return (
           <View>
 
@@ -30,7 +30,8 @@ const ShoppingCart = () => {
 
                     <View>
 
-                         <TouchableOpacity  style={styles.btn}>
+                         <TouchableOpacity  style={styles.btn} onPress={()=>{navigation.navigate('Scrap Item', { screen: 'T3Screen1' });
+}}>
                               <View>
                                    <Text   style={styles.btntxt}>Please Add Scrap Item</Text>
                               </View>

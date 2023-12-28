@@ -60,7 +60,12 @@ const App = () => {
           headerTitle: '', // Hide the header title
         }}/>
         <Stack.Screen name='T1Screen1modal1' component={T1Screen1modal1}/>
-
+        {/* //// */}
+        <Stack.Screen name='T2Screen1' component={T2Screen1} options ={{
+          headerTitle: 'Scrap Cart',
+          headerTitleAlign: 'center',
+        }} />
+        {/* /// */}
       </Stack.Navigator>
     )
   }
@@ -100,13 +105,6 @@ const App = () => {
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }}/>
         <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
-
-      </Stack.Navigator>
-    )
-  }
-  const Stack3 = () => {
-    return (
-      <Stack.Navigator>
         <Stack.Screen name='T3Screen1'
         component={T3Screen1}
          options=
@@ -119,6 +117,22 @@ const App = () => {
 
          
           />
+      </Stack.Navigator>
+    )
+  }
+  const Stack3 = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name='T3Screen1'
+        component={T3Screen1}
+         options=
+         {{ 
+            headerTitle: 'Create Scrap',
+            headerTitleAlign: 'center', 
+            cardStyle: {backgroundColor: '#fff'},
+            
+         }}         
+          />
         <Stack.Screen name='T3Screen2' component={T3Screen2} />
         <Stack.Screen name='T3Screen3' component={T3Screen3} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
@@ -126,7 +140,9 @@ const App = () => {
         <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
       
         <Stack.Screen name='OpenCamAndGalScreen' component={OpenCamAndGalT3S1} options={{headerShown:false}}/>
-
+        <Stack.Screen name='ShoppingCart' component={ShoppingCart} options={{
+          headerTitle: '', // Hide the header title
+        }}/>
       </Stack.Navigator>
     )
   }
@@ -148,10 +164,11 @@ const App = () => {
 
     
     <Provider store={store}>
-   
+    
 
     <NavigationContainer>
-      <Tab.Navigator  initialRouteName='T1Screen'
+      <Tab.Navigator 
+       initialRouteName='T1Screen'
         screenOptions={({ route }) => ({
 
          unmountOnBlur: true, // Unmount the screen when it's not visible
@@ -163,9 +180,11 @@ const App = () => {
           tabBarLabelStyle:{
             fontSize: 15,
           },
-      
+         
           // headerShown: false,
         })}
+     
+     
       >
         <Tab.Screen name='Tab1' component={Stack1}  options=
       {{
@@ -228,7 +247,6 @@ const App = () => {
            />
       </Tab.Navigator>
     </NavigationContainer>
-
 
   
     </Provider>

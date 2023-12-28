@@ -78,7 +78,7 @@
 //                 method: 'DELETE',
 //                 // Add necessary headers or body if required by your API
 //               });
-        
+
 //               if (response.ok) {
 //                 // Assuming successful deletion, you can update the UI or perform any action needed
 //                 console.log(`Item ${itemId} deleted successfully`);
@@ -95,7 +95,7 @@
 //       ],
 //       { cancelable: false }
 //     );
-    
+
 //   };
 //   const getTotalWeight = () => {
 //     if (!data || data.length === 0) {
@@ -259,10 +259,11 @@ import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { chosenDateTimeAction, myScrapDetailsAction } from '../.././redux/actions/myScrapDetailsAction';
+import ShoppingCart from '../../components/ShoppingCart';
 const imgrul = "https://shreddersbay.com/API/uploads"
 
 
-const T2Screen1 = ({navigation}) => {
+const T2Screen1 = ({ navigation }) => {
   const [userDataLOCAL_STORAGE, setLocalUserData] = useState<{ [key: string]: any } | null>(null);
   const [userId, setUserId] = useState('');
   const url = 'https://shreddersbay.com/API/cart_api.php?action=select_id&user_id=';
@@ -333,7 +334,7 @@ const T2Screen1 = ({navigation}) => {
                 method: 'DELETE',
                 // Add necessary headers or body if required by your API
               });
-        
+
               if (response.ok) {
                 // Assuming successful deletion, you can update the UI or perform any action needed
                 console.log(`Item ${itemId} deleted successfully`);
@@ -350,50 +351,50 @@ const T2Screen1 = ({navigation}) => {
       ],
       { cancelable: false }
     );
-    
+
   };
   const getTotalWeight = () => {
     if (!data || data.length === 0) {
       return 0; // If there is no data or it's an empty array, return 0
     }
 
-    const total = data.reduce((accumulator:any, item:any) => {
+    const total = data.reduce((accumulator: any, item: any) => {
       return accumulator + parseFloat(item.total_price);
     }, 0);
 
     return total;
   };
-const [refreshing,setRefreshing]=useState(false)
-const onRefresh=()=>{
-  fetchUserData();
-  fetchApiData(userId)
-}
-// refreshControl={
-//   <RefreshControl
-//     refreshing={refreshing}
-//     onRefresh={onRefresh}
-//     colors={['#0000ff']}
-//     tintColor="#0000ff"
-//   />
-// }
+  const [refreshing, setRefreshing] = useState(false)
+  const onRefresh = () => {
+    fetchUserData();
+    fetchApiData(userId)
+  }
+  // refreshControl={
+  //   <RefreshControl
+  //     refreshing={refreshing}
+  //     onRefresh={onRefresh}
+  //     colors={['#0000ff']}
+  //     tintColor="#0000ff"
+  //   />
+  // }
 
 
   return (
     <View style={styles.container}>
 
       {/* <Button title='goto address screen'onPress={()=>{navigation.navigate("T2Screen2")}}/> */}
-     
-      <ScrollView 
-      refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-          colors={['#0000ff']}
-          tintColor="#0000ff"
-        />
-      }
+
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#0000ff']}
+            tintColor="#0000ff"
+          />
+        }
       >
-        {data ? (
+        {data?.length ? (
           data.map((item: any) => (
             <View key={item.cart_id} style={styles.card}>
 
@@ -479,11 +480,14 @@ const onRefresh=()=>{
             </View>
           ))
         ) : (
-          <Text>No data fetched yet</Text>
+          // <Text>No data fetched yet</Text>
+          <View>
+            <ShoppingCart navigation={navigation}/>
+          </View>
         )}
       </ScrollView>
 
-      <View style={styles.bottomButton}>
+      {data?.length ? (<View style={styles.bottomButton}>
         <View
           style=
           {{
@@ -517,11 +521,12 @@ const onRefresh=()=>{
         </View>
 
         <View  >
-          <UpcomingDate  data={data} navigation={navigation}/>
+          <UpcomingDate data={data} navigation={navigation} />
         </View>
 
 
-      </View>
+      </View>) : null}
+
 
 
     </View>
@@ -531,7 +536,7 @@ const onRefresh=()=>{
 
 const styles = StyleSheet.create({
 
-  
+
 
   imageContainer: {
     flex: 0.7, // Equal width for image container
@@ -620,13 +625,13 @@ const UpcomingDate: React.FC<UpcomingDateProps> = ({ data, navigation }) => {
   // Calculate today's date
   const today = new Date();
 
-  const onDateChange = (event:any, selected:any) => {
+  const onDateChange = (event: any, selected: any) => {
     const currentDate = selected || selectedDate;
     setShowPicker(Platform.OS === 'ios');
     setSelectedDate(currentDate);
   };
 
-  const formatDate = (date:any) => {
+  const formatDate = (date: any) => {
     const formattedDate = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     return formattedDate;
   };
@@ -644,12 +649,12 @@ const UpcomingDate: React.FC<UpcomingDateProps> = ({ data, navigation }) => {
       // console.log(`userId is ${user_id}`);
       // Perform action since the selected date and time is valid (after or equal to current date and time)
       dispatch(myScrapDetailsAction(data));
-      
+
       dispatch(chosenDateTimeAction(selectedDate.toString()));
 
 
-      console.log("i want to check data and choosen date----->",data,selectedDate);
-      
+      console.log("i want to check data and choosen date----->", data, selectedDate);
+
       navigation.navigate('T2Screen2')
 
     } else {
@@ -713,7 +718,7 @@ const UpcomingDate: React.FC<UpcomingDateProps> = ({ data, navigation }) => {
       )}
 
       <TouchableOpacity
-        onPress={()=>{handleContinue()}}
+        onPress={() => { handleContinue() }}
         style=
         {{
           marginBottom: 10,
