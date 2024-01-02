@@ -1,10 +1,11 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Feather, FontAwesome5 } from '@expo/vector-icons'
 
-const T4Screen1 = ({navigation}) => {
-  const [userId,setUserId]=useState(null)
+const T4Screen1 = ({ navigation }) => {
+  const [userId, setUserId] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +36,7 @@ const T4Screen1 = ({navigation}) => {
     fetchData();
   }, []);
 
-  const handleLOgOUt= async (  )=>{
+  const handleLOgOUt = async () => {
     try {
       // await AsyncStorage.getItem('UserCred');
       Alert.alert(
@@ -57,67 +58,127 @@ const T4Screen1 = ({navigation}) => {
           },
         ],
         { cancelable: false }
-      );    } catch (error) {
-      console.log(error);
-      
+      );
     }
-   
+    catch (error) {
+      console.log(error);
+
+    }
   }
+
+  const orderDetail = () => {
+    console.log("working fine");
+    navigation.navigate(  'MyOrder');
+  };
+
+
   return (
     <View >
-      {(userId !== null)?(  <View>
-      <View style={styles.button}>
-        <TouchableOpacity onPress={handleLOgOUt}>
-          <Text  style={styles.text1}>
-            Logout
+      {(userId !== null) ? (
+        <View>
+          <TouchableWithoutFeedback onPress={orderDetail}>
+            <View style={styles.button} >
+
+
+              <View style={styles.icon} >
+
+                <View>
+                  <FontAwesome5 name="box" />
+                </View>
+
+
+                <View >
+                 
+                    <Text style={styles.text1}>
+                      My Order
+                    </Text>
+                  
+                </View>
+
+              </View>
+
+              <View style={styles.icon1}>
+                <Feather name="chevron-right" />
+              </View>
+
+            </View>
+            </TouchableWithoutFeedback>
+
+
+          <View style={styles.button}>
+
+            <View style={styles.icon} >
+
+              <View>
+                <FontAwesome5 name="box" />
+              </View>
+
+              <View >
+                <TouchableOpacity onPress={handleLOgOUt}>
+                  <Text style={styles.text1}>
+                    Privacy and Logout
+                  </Text>
+                </TouchableOpacity>
+              </View >
+
+            </View>
+
+            <View style={styles.icon1}>
+              <Feather name="chevron-right" />
+            </View>
+
+          </View>
+
+          <View style={styles.button}>
+
+            <View style={styles.icon} >
+
+              <View>
+                <FontAwesome5 name="box" />
+              </View>
+
+              <View >
+                <TouchableOpacity>
+                  <Text style={styles.text1}>
+                    Notifications
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+            </View>
+
+            <View style={styles.icon1}>
+              <Feather name="chevron-right" />
+            </View>
+
+          </View>
+
+
+
+
+        </View>) : (
+        <View style={{ alignItems: 'center', marginTop: 50, }}>
+          <Text style={{ fontSize: 24, }}>
+            User not exits please Signup or Login
           </Text>
-          </TouchableOpacity>
-      </View >
-      <View style={styles.button}>
-        <TouchableOpacity>
-          <Text style={styles.text1}>
-            Notifications
-          </Text>
-         
-        </TouchableOpacity>
-      </View>
-      <View style={styles.button}>
-        <TouchableOpacity>
-          <Text  style={styles.text1}>
-            Logout from all devices 
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.button}>
-        <TouchableOpacity>
-          <Text  style={styles.text1}>
-            Delete account
-          </Text>
-        </TouchableOpacity>
-      </View>
-      </View>):(
-      <View style={{alignItems:'center',marginTop:50,}}>
-        <Text style={{fontSize:24,}}>
-          User not exits please Signup or Login
-        </Text>
-        <View style={styles.btnview} >
-          <TouchableOpacity onPress={()=>{navigation.navigate('Login')}}>
-            <Text style={styles.text1}>
-              Login
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.btnview}>
-          <TouchableOpacity onPress={()=>{navigation.navigate('Signup')}}>
-            <Text style={styles.text1}>
-              Signup
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>)}
-    
-      
-      
+          <View style={styles.btnview} >
+            <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
+              <Text style={styles.text1}>
+                Login
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.btnview}>
+            <TouchableOpacity onPress={() => { navigation.navigate('Signup') }}>
+              <Text style={styles.text1}>
+                Signup
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>)}
+
+
+
     </View>
   )
 }
@@ -125,38 +186,43 @@ const T4Screen1 = ({navigation}) => {
 export default T4Screen1
 
 const styles = StyleSheet.create({
-  button:{
-    height:'14%',
-    width:'95%',
-    borderRadius:10,
-    borderColor:'gray',
-    margin:10,
-    borderWidth:2,
-    backgroundColor:'#ddd',
-    padding:4,
-    alignSelf:'center',
-    
-    
+  icon1: {
+
+
   },
-  text1:{
-    fontSize:25,
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', // To evenly space the two elements
+    alignItems: 'center', // Align items vertically
+    paddingHorizontal: 20, // Add padding as needed
+    // Other styles
   },
-  text2:{
-    fontSize:14,
+  icon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // Other styles for icon container
   },
-  btnview:{
-    height:'24%',
-    width:'95%',
-    borderRadius:10,
-    borderWidth:2,
-    borderColor:'gray',
-    marginTop:20,
-    alignContent:'center',
-    paddingLeft:15,
-    paddingTop:5,
-    backgroundColor:'#ddd'
+
+
+  text1: {
+    fontSize: 25,
   },
-  view:{
+  text2: {
+    fontSize: 14,
+  },
+  btnview: {
+    height: '24%',
+    width: '95%',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'gray',
+    marginTop: 20,
+    alignContent: 'center',
+    paddingLeft: 15,
+    paddingTop: 5,
+    backgroundColor: '#ddd'
+  },
+  view: {
 
   }
 })

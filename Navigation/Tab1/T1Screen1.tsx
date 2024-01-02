@@ -107,35 +107,37 @@ const T1Screen1 = ({ navigation }) => {
 
   const [acceptData, setacceptData] = useState([]);
   const handleBuyPress = async (bookingId: any) => {
-    try {
+    console.log("we will see later ....");
+    
+    // try {
 
-      const formdata = new FormData()
-      formdata.append('booking_id', bookingId);
-      formdata.append('user_id', user_id);
+    //   const formdata = new FormData()
+    //   formdata.append('booking_id', bookingId);
+    //   formdata.append('user_id', user_id);
 
-      const response = await fetch('https://shreddersbay.com/API/orders_api.php?action=accept', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-        body: formdata,
-      });
+    //   const response = await fetch('https://shreddersbay.com/API/orders_api.php?action=accept', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-type': 'multipart/form-data',
+    //     },
+    //     body: formdata,
+    //   });
 
-      if (response.ok) {
-        const aceptData = await response.json();
-        setacceptData(aceptData)
-        // Process or set the acceptData if needed
-        console.log('Accept API request successful');
-      }
+    //   if (response.ok) {
+    //     const aceptData = await response.json();
+    //     setacceptData(aceptData)
+    //     // Process or set the acceptData if needed
+    //     console.log('Accept API request successful');
+    //   }
 
-      else {
-        console.error('Accept API request failed:', response.statusText);
-      }
+    //   else {
+    //     console.error('Accept API request failed:', response.statusText);
+    //   }
 
-    }
-    catch (error) {
-      console.error('Error:', error);
-    }
+    // }
+    // catch (error) {
+    //   console.error('Error:', error);
+    // }
   };
 
   const [user_id, setUserIds] = useState(null) // User ID
@@ -281,11 +283,23 @@ const T1Screen1 = ({ navigation }) => {
 
 
 
-                      <View style={styles.textContainer3}>
+                      {/* <View style={styles.textContainer3}> */}
+                      <View >
+
                         <TouchableOpacity onPress={() => { handleBuyPress(item.booking_id) }}>
                           <Text style={styles.detail}
                           >
                             Buy
+                          </Text>
+
+                        </TouchableOpacity>
+
+                      </View>
+                      <View >
+                        <TouchableOpacity onPress={() => {navigation.navigate('Tab5',{screen:'ALL'}) }}>
+                          <Text style={styles.detail}
+                          >
+                            Chat
                           </Text>
 
                         </TouchableOpacity>
