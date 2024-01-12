@@ -472,6 +472,10 @@ import { NavigationProp } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { firebaseDB } from '../../Config/Firebaseconfig';
+import uuid from 'react-native-uuid';
+
 
 type SignProps = {
   navigation: NavigationProp<any>;
@@ -628,6 +632,7 @@ const Signup = ({ navigation }: SignProps) => {
             {
               text: 'OK',
               onPress: () => {
+                signupWithFirebase();
                 navigation.navigate('Login'); // Navigate to 'Login' screen
               },
             },
@@ -643,7 +648,34 @@ const Signup = ({ navigation }: SignProps) => {
     }
   };
   
+  const signupWithFirebase =async ()=>{
+    const usersCollection = collection(firebaseDB, 'users');
+    const userIdf = uuid.v4();
+    const userDocumentRef = doc(usersCollection,`${userIdf}`);
 
+
+
+    if(email !== " "){
+      const userObjectf = {
+        name,
+        email,
+        mobile: phone,
+        password,
+        idf:userIdf,
+      };
+
+// await setDoc(doc(usersCollection), userObjectf);
+      setDoc(userDocumentRef, userObjectf)
+  .then(() => {
+    console.log('Document successfully written!');
+  })
+  .catch((error) => {
+    console.error('Error writing document: ', error);
+  });
+}
+
+
+  }
 
 
 

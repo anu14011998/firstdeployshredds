@@ -298,6 +298,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native'
 import { CommonActions } from '@react-navigation/native';
 import { setLoginData } from '../../redux/actions/loginAction';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { firebaseDB } from '../../Config/Firebaseconfig';
 
 
 // const Login = ({ navigation }: LoginProps) => {
@@ -410,6 +412,7 @@ const Login = ({ navigation }: LoginProps) => {
                   onPress: () => {
                     // Reset the navigation stack to 'Screen1' removing all screens
                     // navigation.navigate("T1Screen1")
+                    LoginWithfirebase(email, password);
                     navigation.navigate('Tab1', { screen: 'T1Screen1' });
 
 
@@ -445,6 +448,131 @@ const Login = ({ navigation }: LoginProps) => {
       console.log('Login data is not valid.');
     }
   };
+  const LoginWithfirebase = async (email1: string, password: string) => {
+
+    //   if ((email !== null) && (password !== null)) {
+    //     await signInWithEmailAndPassword(
+    //       firebaseAuth, email, password
+    //     ).then(
+    //       (userCred) => {
+    //         if (userCred) {
+    //           console.log("User Id:", userCred?.user.uid);
+    //           getDoc(doc(firebaseDB, "users", userCred?.user.uid)).then(
+    //             async (DocumentSnapshot) => {
+    //               if (DocumentSnapshot.exists()) {
+    //                 console.log("User Data: ", DocumentSnapshot.data());
+    //                 const floginuserdata=DocumentSnapshot.data();
+    //                 dispatch(setfirebaseLoginData(floginuserdata))
+    //                 try {
+    //   // ... existing code to fetch user data and dispatch it
+
+    //   // Check and set valid values in AsyncStorage
+    //   const userData = DocumentSnapshot.data();
+    //   if (userData) {
+    //     if (userData.fullName) {
+    //       await AsyncStorage.setItem("fcuserFullname", userData.fullName);
+    //     }
+    //     if (userData._id) {
+    //       await AsyncStorage.setItem("fcuserId", userData._id);
+    //     }
+    //     if (userData.email) {
+    //       await AsyncStorage.setItem("fcuserEmail", userData.email);
+    //     }
+    //     if (userData.mobileNumber) {
+    //       await AsyncStorage.setItem("fcuserMObile", userData.mobileNumber);
+    //     }
+    //     if (userData.password) {
+    //       await AsyncStorage.setItem("fcuserPassword", userData.password);
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.log("Failed to set firebase chat login data", error);
+    // }
+    //               }
+    //             }
+    //           )
+
+    //         }
+    //       }
+    //     ).catch((err) => {
+    //       console.log("Error: ", err.message);
+
+    //     })
+    //   }
+    // const userId = uuidv4(); 
+    //   const usersCollection = collection(firebaseDB, 'users');
+    //   await addDoc(usersCollection, {
+    //     userId: userId,
+    //     email: email,
+    //     name:name,
+    //     mobile:mobile,
+    //     password: password
+    //   }).then(res=>{
+    //     console.log('user created');
+    //   }).catch(error=>{
+    //     console.log(error);
+
+    //   })
+    // const userId = uuidv4();
+    //     const usersCollection = collection(firebaseDB, 'users');
+    //     await addDoc(usersCollection, {
+    //       userId: userId,
+    //       email: email,
+    //       password: password
+    //     }).then(res => {
+    //       console.log('user created');
+    //     }).catch(error => {
+    //       console.log(error);
+
+    //     })
+    // Query for the user document based on email
+    if ((email1 !== null) && (password !== null)) {
+      // console.log("i m in login with firebase function");
+      console.log("my email is :-",email1);
+      
+      const usersCollection = collection(firebaseDB, 'users');
+      const q = query(usersCollection, where('email', '==', email1));
+    
+      try {
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            console.log('User data:---', userData);
+           if(userData != null){
+            // console.log("hii this is vinit......");
+           
+            if (userData && Object.keys(userData).length > 0) {
+              try {
+                await AsyncStorage.setItem("femail", userData.email || "");
+                await AsyncStorage.setItem("fmobile", userData.mobile || "");
+                await AsyncStorage.setItem("fid", userData.idf || "");
+                await AsyncStorage.setItem("fname", userData.name || "");
+                await AsyncStorage.setItem("fpassword", userData.password || "");
+              // console.log(userData.idf);
+              
+                console.log("Data stored Of Firebase in AsyncStorage successfully");
+              } catch (error) {
+                console.log("Error storing data in AsyncStorage:", error);
+              }
+            } else {
+              console.log("User data is null or empty");
+            }
+            
+            
+           }
+
+          } else {
+            console.log('Document does not exist');
+          }
+        })
+      } catch (error) {
+        console.error('Error getting user data except email:', error);
+      }
+    }
+
+
+  }
 
 
   return (

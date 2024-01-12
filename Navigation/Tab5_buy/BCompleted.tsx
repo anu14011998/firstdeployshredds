@@ -90,7 +90,7 @@ const BCompleted = () => {
      />}
  >
   <View>
-  <Text>BCurrent</Text>
+ 
   {/* <Text>{JSON.stringify(currentdata)}</Text> */}
   <View style={styles.container}>
     {currentdata.map((item, index) => (
@@ -99,7 +99,12 @@ const BCompleted = () => {
         style={styles.card}
         onPress={() => handleCardClick(item)}
       >
-        <Text style={styles.cardText}>{item.address}</Text>
+        <Text style={styles.cardText}>Booking Id:  {item.booking_id}</Text>
+        <Text style={styles.cardText1}>{item.p_name}</Text>
+        <Text style={styles.cardText2}>Weight: {item.weight}</Text>
+        <Text style={styles.cardText2}>Approx_price: {item.approx_price}</Text>
+        <Text style={styles.cardText2}>Booking_date: {item.booking_date}</Text>
+        <Text style={styles.cardText2}>Schedule Date: {item.schedule_date}</Text>
         {/* Display other data from 'item' */}
       </TouchableOpacity>
     ))}
@@ -113,15 +118,15 @@ const styles = StyleSheet.create({
        flex: 1,
        alignItems: 'center',
        justifyContent: 'center',
-       padding: 20,
+       padding: 8,
      },
      card: {
        backgroundColor: '#fff',
        borderRadius: 8,
-       padding: 20,
-       marginVertical: 10,
+       padding: 15,
+       marginVertical: 6,
        elevation: 4,
-       width: '90%',
+       width: '100%',
        shadowColor: '#000',
        shadowOffset: {
          width: 0,
@@ -131,10 +136,25 @@ const styles = StyleSheet.create({
        shadowRadius: 3.84,
      },
      cardText: {
-       fontSize: 18,
-       fontWeight: 'bold',
-       marginBottom: 10,
-     },
+      fontSize: 20,
+      fontWeight: '800',
+      marginBottom: 2,
+      color: 'brown'
+    },
+
+    cardText1:{
+      fontSize: 20,
+      fontWeight: '600',
+      marginBottom: 2,
+      color: 'black'
+    },
+
+    cardText2:{
+     fontSize: 14,
+     fontWeight: '600',
+     marginBottom: 2,
+     color: 'gray'
+    },
      // Add styles for other card data as needed
    });
    

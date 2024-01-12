@@ -19,7 +19,7 @@ import T2Screen3 from './Navigation/Tab2/T2Screen3'
 import T2Screen2 from './Navigation/Tab2/T2Screen2'
 import T3Screen2 from './Navigation/Tab3/T3Screen2'
 import T3Screen3 from './Navigation/Tab3/T3Screen3'
-import T4Screen2 from './Navigation/Tab4/T4Screen2'
+import T4Screen2 from './Navigation/Tab4/T4Screen_myorder_chooseBuySell'
 import T1Screen1modal1 from './Navigation/Tab1/T1Screen1modal1';
 import Login from './components/Credential/Login';
 import Signup from './components/Credential/Signup';
@@ -35,6 +35,9 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import AllChats from './Navigation/Tab5_buy/AllChats';
 import BuyingChats from './Navigation/Tab5_buy/BuyingChats';
 import SellingChats from './Navigation/Tab5_buy/SellingChats';
+import SCurrent from './Navigation/Tab6_sell/SCurrent';
+import SCompleted from './Navigation/Tab6_sell/SCompleted';
+import SCancel from './Navigation/Tab6_sell/SCancel';
 
 
 
@@ -75,6 +78,7 @@ const App = () => {
           headerTitleAlign: 'center',
         }} />
         {/* /// */}
+        <Stack.Screen name='myorder' component={InsideMYOrder_Buy}/>
       </Stack.Navigator>
     )
   }
@@ -158,12 +162,26 @@ const App = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen name='T3Screen1' component={T4Screen1} options={{ headerShown: false }} />
-        <Stack.Screen name='T3Screen2' component={T4Screen2} options={{ headerShown: false }} />
+        <Stack.Screen name='T3Screen2' component={T4Screen2}  />
         <Stack.Screen name='T3Screen3' component={T4Screen1} options={{ headerShown: false }} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
         <Stack.Screen name='T1Screen1' component={T1Screen1} options={{ headerShown: false }} />
-        <Stack.Screen name='MyOrder' component={InsideMYOrder}/>
+        <Stack.Screen name='MyOrderBuy' component={InsideMYOrder_Buy}/>
+        <Stack.Screen name='MyOrderSell' component={InsideMYOrder_Sell}/>
+        <Stack.Screen name='T2Screen2' component={T2Screen2} options={{
+          headerTitle: 'Add Address',
+          headerTitleAlign: 'center',
+
+          headerStyle: {
+            backgroundColor: 'blue', // Change the background color here
+          },
+          headerTintColor: '#fff', // Change the text color (optional)
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
       </Stack.Navigator>
     )
   }
@@ -179,7 +197,7 @@ const App = () => {
       </TTab.Navigator>
     )
   }
-  const InsideMYOrder = () => {
+  const InsideMYOrder_Buy = () => {
     return (
       <TTab.Navigator>
         <TTab.Screen name='BCurrent' component={BCurrent} />
@@ -187,7 +205,16 @@ const App = () => {
       </TTab.Navigator>
     )
   }
+  const InsideMYOrder_Sell = () => {
+    return (
+      <TTab.Navigator>
+        <TTab.Screen name='SCurrent' component={SCurrent} />
+        <TTab.Screen name='SCompleted' component={SCompleted} />
+        {/* <TTab.Screen name='SCancel' component={SCancel} /> */}
 
+      </TTab.Navigator>
+    )
+  }
   return (
 
 
@@ -228,17 +255,7 @@ const App = () => {
             options={({ navigation }) =>
             ({
 
-              // headerTitle:'',
-              // headerTitleAlign:'center',
-              // headerLeft: () => (
-              //   <FontAwesome
-              //     name="arrow-left"
-              //     size={25}
-              //     color="black"
-              //     style={{ marginLeft: 10 }}
-              //     onPress={() => navigation.navigate('T2Screen1')}
-              //   />
-              // ),
+             
               headerShown: false,
               tabBarLabel: 'Scrap Cart',
               tabBarIcon: ({ color, size }) => (
@@ -274,10 +291,11 @@ const App = () => {
               ),
             }}
           />
-
           <Tab.Screen name='Setting' component={Stack4}
             options={{
               tabBarLabel: 'Setting',
+              headerShown: false,
+              headerTitle: 'setting',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="settings" color={color} size={size} />
 

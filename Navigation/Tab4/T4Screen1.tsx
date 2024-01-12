@@ -1,24 +1,36 @@
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View,Image} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Feather, FontAwesome5 } from '@expo/vector-icons'
+import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 
 const T4Screen1 = ({ navigation }) => {
   const [userId, setUserId] = useState(null)
+  const [profileData, setProfileData] = useState([])
+  const baseImageUrl = 'https://shreddersbay.com/API/uploads/';
+  const imgurl = profileData[0]?.imgurl; 
+
+  const imageUrl = imgurl ? baseImageUrl + imgurl : undefined;
+
+  
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const storedData = await AsyncStorage.getItem('UserCred');
+        // console.log("my stoerd data is :--",storedData);
 
-        if (storedData !== null) {
+        if (storedData != null) {
           const userDataObject = JSON.parse(storedData);
           // setUserDataLocalStorage(userDataObject);
+          // console.log("my userobject is :--",userDataObject);
 
           // Check if the '0' key exists and 'id' field is present in the object
           if (userDataObject && userDataObject['0'] && userDataObject['0'].id) {
             const userId = userDataObject['0'].id;
             setUserId(userId)
+            // console.log("userid is something from useeffect:-",userId);
+
             // Now, userId contains the value of the 'id' field from userDataLOCAL_STORAGE
             // console.log('in mathod User ID:', userId);
           } else {
@@ -32,9 +44,28 @@ const T4Screen1 = ({ navigation }) => {
       }
 
     };
-
     fetchData();
-  }, []);
+
+
+    //   const intervalFunction = () => {
+    //     // Perform actions or call functions here that you want to repeat
+    //     getProfile(userId);
+    //   };
+    //   const intervalId = setInterval(intervalFunction, 5000); // Interval in milliseconds (e.g., 5000ms = 5 seconds)
+    //   return () => clearInterval(intervalId);
+
+    // }
+    console.log("the user id is:--", userId);
+
+    getProfile(userId);
+
+
+    // Set an interval (e.g., every 5 seconds)
+
+    // Clear the interval when the component unmounts to avoid memory leaks
+
+
+  }, [userId]);
 
   const handleLOgOUt = async () => {
     try {
@@ -68,91 +99,268 @@ const T4Screen1 = ({ navigation }) => {
 
   const orderDetail = () => {
     console.log("working fine");
-    navigation.navigate(  'MyOrder');
+    // navigation.navigate('MyOrder');
+    navigation.navigate('T3Screen2');
+
   };
+
+
+  const AddAdress = () => {
+    console.log("working fine");
+    navigation.navigate('T2Screen2');
+  };
+
+
+  const getProfile = async (uid: any) => {
+    console.log("profileid is from getprofile:", uid);
+    if (uid != null) {
+      try {
+        const response = await fetch(
+          `https://shreddersbay.com/API/user_api.php?action=select_id&user_id=${userId}`, {
+          method: 'GET',
+          // Remove 'Content-Type' header for GET requests
+        }
+        );
+
+        if (response.ok) {
+          const userProfileData = await response.json();
+          console.log('Profile fetched successfully:', userProfileData);
+          // Handle userData as needed (e.g., set state or update UI)
+          setProfileData(userProfileData)
+        } else {
+          console.error('Failed to get profile:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    }
+
+  };
+
+
 
 
   return (
     <View >
-      {(userId !== null) ? (
-        <View>
-          <TouchableWithoutFeedback onPress={orderDetail}>
-            <View style={styles.button} >
 
+<View
+>
+{/* <View style={{}}>
+<View>
+  <Text>
+     profile:- {profileData[0]?.imgurl}
+  </Text>
+     {imgurl && (
+        <Image
+          source={{ uri: imageUrl }}
+          style={{ width: 100, height: 100 }} // Adjust dimensions as needed
+        />
+      )}
+
+</View>
+
+<View>
+  <Text>
+  Name :- {profileData[0]?.name}
+  </Text>
+</View>
+<View>
+  <Text>
+  {profileData[0]?.email}
+  </Text>
+</View>
+</View> */}
+
+
+
+
+{/* <View>
+  <Text>
+  {JSON.stringify(profileData)},{profileData[0]?.name}
+  </Text>
+</View> */}
+
+
+</View>
+
+
+      {(userId !== null) ? (
+
+
+
+        
+        <View style={{ padding: 5,
+        backgroundColor: '#fff',
+        borderRadius: 30,
+        marginTop: 10,
+         }}>
+
+<View style={{padding: 10}}>
+
+
+<View>
+  <Text>
+  Name :- {profileData[0]?.name}
+  </Text>
+</View>
+<View>
+  <Text>
+  {profileData[0]?.email}
+  </Text>
+</View>
+</View>
+          
+
+
+          <TouchableWithoutFeedback onPress={orderDetail} style={{ marginVertical: 7 }}>
+            <View style={styles.button} >
 
               <View style={styles.icon} >
 
                 <View>
-                  <FontAwesome5 name="box" />
+                  <MaterialCommunityIcons name="bucket-outline" style=
+                  {{ 
+                    fontSize: 20,
+                    padding: 6,
+                    marginRight: 10,
+                    backgroundColor: '#eee',
+                    borderRadius: 50,
+                    
+                    }} />
                 </View>
 
 
                 <View >
-                 
-                    <Text style={styles.text1}>
-                      My Order
-                    </Text>
-                  
+
+                  <Text style={styles.text1}>
+                    My Order
+                  </Text>
+
                 </View>
 
               </View>
 
               <View style={styles.icon1}>
-                <Feather name="chevron-right" />
+                <Feather name="chevron-right" 
+                 style=
+                   {{
+                   fontSize: 25,
+                   color: 'gray' 
+                   }}
+                    />
               </View>
 
             </View>
-            </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>       
 
+          <TouchableWithoutFeedback style={{ marginVertical: 7 }} onPress={AddAdress}>
+            <View style={styles.button}>
 
-          <View style={styles.button}>
+              <View style={styles.icon} >
 
-            <View style={styles.icon} >
+                <View>
+                  <Ionicons name="location-outline" style={{fontSize: 20,
+                    padding: 6,
+                    marginRight: 10,
+                    backgroundColor: '#eee',
+                    borderRadius: 50, }} />
+                </View>
 
-              <View>
-                <FontAwesome5 name="box" />
-              </View>
+                <View >
 
-              <View >
-                <TouchableOpacity onPress={handleLOgOUt}>
                   <Text style={styles.text1}>
-                    Privacy and Logout
+                    Add Address
                   </Text>
-                </TouchableOpacity>
-              </View >
 
-            </View>
+                </View>
 
-            <View style={styles.icon1}>
-              <Feather name="chevron-right" />
-            </View>
-
-          </View>
-
-          <View style={styles.button}>
-
-            <View style={styles.icon} >
-
-              <View>
-                <FontAwesome5 name="box" />
               </View>
 
-              <View >
-                <TouchableOpacity>
+              <View style={styles.icon1}>
+                <Feather name="chevron-right" 
+                style=
+                {{ 
+                  fontSize: 25,
+                  color: 'gray' 
+                  }}
+                   />
+              </View>
+
+            </View>
+          </TouchableWithoutFeedback>
+
+
+          <TouchableWithoutFeedback style={{ marginVertical: 7 }}>
+            <View style={styles.button}>
+
+              <View style={styles.icon} >
+
+                <View>
+                  <Ionicons name="notifications-outline" style={{fontSize: 20,
+                    padding: 6,
+                    marginRight: 10,
+                    backgroundColor: '#eee',
+                    borderRadius: 50, }} />
+                </View>
+
+                <View >
+                  <TouchableOpacity>
+                    <Text style={styles.text1}>
+                      Notifications
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
+
+              <View style={styles.icon1}>
+                <Feather name="chevron-right"
+                 style=
+                 {{
+                   fontSize: 25,
+                   color: 'gray' 
+                  }}
+                />
+              </View>
+
+            </View>
+          </TouchableWithoutFeedback>
+
+          <TouchableWithoutFeedback onPress={handleLOgOUt} style={{ marginVertical: 7 }}>
+            <View style={styles.button}>
+
+              <View style={styles.icon} >
+
+                <View>
+                  <MaterialCommunityIcons name="logout" style={{
+                    fontSize: 20,
+                    padding: 6,
+                    marginRight: 10,
+                    backgroundColor: '#eee',
+                    borderRadius: 50, }} />
+                </View>
+
+                <View >
+
+                  {/* onPress={handleLOgOUt} */}
                   <Text style={styles.text1}>
-                    Notifications
+                    Logout
                   </Text>
-                </TouchableOpacity>
+
+                </View >
+
+              </View>
+
+              <View style={styles.icon1}>
+                <Feather name="chevron-right"
+                 style=
+                 {{
+                   fontSize: 25,
+                   color: 'gray' }} />
               </View>
 
             </View>
-
-            <View style={styles.icon1}>
-              <Feather name="chevron-right" />
-            </View>
-
-          </View>
-
+          </TouchableWithoutFeedback>
 
 
 
@@ -176,8 +384,6 @@ const T4Screen1 = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>)}
-
-
 
     </View>
   )
@@ -205,7 +411,7 @@ const styles = StyleSheet.create({
 
 
   text1: {
-    fontSize: 25,
+    fontSize: 20,
   },
   text2: {
     fontSize: 14,
@@ -226,4 +432,7 @@ const styles = StyleSheet.create({
 
   }
 })
+
+
+
 
