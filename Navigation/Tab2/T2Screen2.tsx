@@ -578,7 +578,7 @@ else {
   }
 
   return (
-    <View>
+    <View style={{flex: 1}} >
 
       <ScrollView refreshControl={
         <RefreshControl
@@ -685,9 +685,11 @@ else {
             </TouchableOpacity>
           ))}
         </View>
+
+
       </ScrollView>
       {/* ... (bottomButton code remains the same) */}
-      <View style={styles.bottomView1}>
+<View style={styles.bottomView1}>
 
 
         <TouchableOpacity
@@ -698,7 +700,7 @@ else {
           >Deliver Here</Text>
         </TouchableOpacity>
 
-      </View>
+</View>
     </View>
   );
 };
@@ -718,7 +720,7 @@ const styles = StyleSheet.create({
   touchableOpacityStyle1: {
     // justifyContent: 'center',
     // alignItems: 'center',
-    width: 500,
+    // width: 500,
 
     // Other styles
   },
@@ -727,7 +729,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     backgroundColor: 'blue',
     textAlign: 'center',
-    padding: 10,
+    padding: 18,
     borderWidth: 1,
     borderColor: 'blue',
     borderRadius: 5,
@@ -753,25 +755,23 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     
   },
-  bottomButton: {
-    backgroundColor: 'skyblue', // Adjust as needed
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    marginHorizontal: 0,
-    marginBottom: 0,
-    borderRadius: 5,
-  },
+  // bottomButton: {
+  //   backgroundColor: 'skyblue', // Adjust as needed
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   marginHorizontal: 0,
+  //   marginBottom: 0,
+  //   borderRadius: 5,
+  // },
   bottomView1: {
     position: 'absolute',
     width: '100%',
-    top: 530,
     bottom: 0,
     backgroundColor: 'transparent',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
+   
+  
 
 
   },

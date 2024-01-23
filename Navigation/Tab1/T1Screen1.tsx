@@ -917,41 +917,42 @@ const T1Screen1 = ({ navigation }) => {
 
       <View style={styles.logo}>
 
-        <View style=
+{/* <View  style=
           {{
             flexDirection: 'row',
             // justifyContent: 'space-between',
             gap: 20,
           }}
-        >
-          <View style={{ flexDirection: 'row' }}>
-            <Image
+          >
+<View>
+          <Image
               style={styles.image1}
               source={require('../../assets/SHREDS.png')}
             />
+      </View>
+</View> */}
+    
 
-            <Text style={styles.heading}>ShreddersBay</Text>
+        <View style=
+          {{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flex: 1,
+            
+           
+          }}
+        >
 
+        
+          <View style={{ flexDirection: 'row', }}>
+           <Text style={styles.heading}>ShreddersBay</Text>
           </View>
 
-          <View style={{ flexDirection: 'row', gap: 20, marginLeft: 20 }}>
-            <TouchableOpacity  >
-              <View style={styles.heading1} >
-                <Ionicons name="person-add"
-                  onPress={() => navigation.navigate('Login')}
-                  size={30} color={'#00457E'} />
-              </View>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity  >
-              <View style={styles.heading1} >
-                <FontAwesome name="shopping-cart"
-                  onPress={() => navigation.navigate('T2Screen1')}
-                  size={30} color={'#00457E'} />
-              </View>
-            </TouchableOpacity>
-          </View>
+        <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }} >
+          <Ionicons name="location-outline" style={{ fontSize: 25,   fontWeight: 'bold',
+          color: '#00457E',}} />
+       </View>
 
 
         </View>
@@ -963,13 +964,34 @@ const T1Screen1 = ({ navigation }) => {
 
 
       <View style={styles.container1}>
-        <TextInput
-          placeholder="search"
-          clearButtonMode='always'
-          autoCapitalize='none'
-          autoCorrect={true}
-          style={styles.searchbox}
-        />
+      
+          <TextInput
+            placeholder="search"
+            clearButtonMode='always'
+            autoCapitalize='none'
+            autoCorrect={true}
+            style={styles.searchbox}
+          />
+        
+     
+
+<View style={{flexDirection: 'row', gap: 6}}>
+            <TouchableOpacity  >
+              <View style={styles.heading1} >
+                <Ionicons name="person-add"
+                  onPress={() => navigation.navigate('Login')}
+                  size={30} color={'#00457E'} />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity  >
+              <View style={styles.heading1} >
+                <FontAwesome name="shopping-cart"
+                  onPress={() => navigation.navigate('T2Screen1')}
+                  size={30} color={'#00457E'} />
+              </View>
+            </TouchableOpacity>
+</View>
       </View>
 
       <View style={{ flex: 1 }} >
@@ -1152,7 +1174,8 @@ const styles = StyleSheet.create({
 
 
   heading1: {
-    marginTop: 10,
+    marginTop: 10, 
+    marginLeft: 7,
 
   },
 
@@ -1292,6 +1315,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     backgroundColor: 'white',
+   
 
   },
 
@@ -1300,6 +1324,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 8,
     borderBottomColor: '#CCC',
+    flexDirection: 'row',
 
   },
 
@@ -1386,13 +1411,15 @@ const styles = StyleSheet.create({
   },
 
   searchbox: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
     marginTop: 10,
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 8,
     borderBottomWidth: 1,
+    width: "80%",
+    height: "60%",
 
 
   },

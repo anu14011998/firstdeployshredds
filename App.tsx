@@ -38,6 +38,7 @@ import SellingChats from './Navigation/Tab5_buy/SellingChats';
 import SCurrent from './Navigation/Tab6_sell/SCurrent';
 import SCompleted from './Navigation/Tab6_sell/SCompleted';
 import SCancel from './Navigation/Tab6_sell/SCancel';
+import ChatBlank from './Navigation/Tab5_buy/ChatBlank';
 
 
 
@@ -188,9 +189,12 @@ const App = () => {
 
   const Stack5 = () => {
     return (
+
+
       <TTab.Navigator>
         <TTab.Screen name='ALL' component={AllChats} />
         <TTab.Screen name='BUYING' component={BuyingChats} />
+        {/* <Stack.Screen name='ChatBlank' component={ChatBlank}/> */}
         <TTab.Screen name='SELLING' component={SellingChats} />
         {/* <TTab.Screen name='BCurrent' component={BCurrent} />
         <TTab.Screen name='BCompleted' component={BCompleted} /> */}

@@ -195,22 +195,28 @@ const T4Screen1 = ({ navigation }) => {
         marginTop: 10,
          }}>
 
-<View style={{padding: 10}}>
+<View style=
+{{
+  padding: 20 ,
+  backgroundColor: '#3399ff',
+  borderTopRightRadius: 10,
+  borderTopLeftRadius: 10,
+  marginTop: 10,
+  }}>
 
 
 <View>
-  <Text>
-  Name :- {profileData[0]?.name}
-  </Text>
-</View>
-<View>
-  <Text>
-  {profileData[0]?.email}
+  <Text style=
+  {{
+    color:'white',
+    fontSize: 20,
+    }}>
+   {profileData[0]?.name}
   </Text>
 </View>
 </View>
           
-
+<View style={{marginTop: 20}}>
 
           <TouchableWithoutFeedback onPress={orderDetail} style={{ marginVertical: 7 }}>
             <View style={styles.button} >
@@ -223,8 +229,9 @@ const T4Screen1 = ({ navigation }) => {
                     fontSize: 20,
                     padding: 6,
                     marginRight: 10,
-                    backgroundColor: '#eee',
+                    backgroundColor: 'blue',
                     borderRadius: 50,
+                    color: 'white'
                     
                     }} />
                 </View>
@@ -262,8 +269,9 @@ const T4Screen1 = ({ navigation }) => {
                   <Ionicons name="location-outline" style={{fontSize: 20,
                     padding: 6,
                     marginRight: 10,
-                    backgroundColor: '#eee',
-                    borderRadius: 50, }} />
+                    backgroundColor: '#1aff1a',
+                    borderRadius: 50,
+                    color: 'black' }} />
                 </View>
 
                 <View >
@@ -299,8 +307,9 @@ const T4Screen1 = ({ navigation }) => {
                   <Ionicons name="notifications-outline" style={{fontSize: 20,
                     padding: 6,
                     marginRight: 10,
-                    backgroundColor: '#eee',
-                    borderRadius: 50, }} />
+                    backgroundColor: '#ffff00',
+                    borderRadius: 50,
+                    color: 'black' }} />
                 </View>
 
                 <View >
@@ -336,8 +345,9 @@ const T4Screen1 = ({ navigation }) => {
                     fontSize: 20,
                     padding: 6,
                     marginRight: 10,
-                    backgroundColor: '#eee',
-                    borderRadius: 50, }} />
+                    backgroundColor: '#993333',
+                    borderRadius: 50,
+                    color: 'white' }} />
                 </View>
 
                 <View >
@@ -362,7 +372,7 @@ const T4Screen1 = ({ navigation }) => {
             </View>
           </TouchableWithoutFeedback>
 
-
+ </View>
 
         </View>) : (
         <View style={{ alignItems: 'center', marginTop: 50, }}>
