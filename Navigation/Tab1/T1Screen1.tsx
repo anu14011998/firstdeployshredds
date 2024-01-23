@@ -659,7 +659,7 @@ const T1Screen1 = ({ navigation }) => {
 
   useEffect(() => {
 
-    getUsers();
+    getUsers1();
   }, [fromChatUserIdFbse, detaildata]);
 
   const [users, setUsers] = useState([]);
@@ -709,6 +709,67 @@ const T1Screen1 = ({ navigation }) => {
           setToChatUserIdFbse(matchingUser.id)
           setToChatUserMobileFbse(matchingUser.mobile)
           setIsModalVisible2(true)
+
+          // Example: Access properties of the matching user object
+          // e.g., matchingUser.id, matchingUser.name, matchingUser.whatever
+          // Your action here...
+        } else {
+          console.log("No matching user found");
+        }
+
+
+
+        setUsers(userData);
+      }
+    } catch (error) {
+      console.log("Error fetching users: ", error);
+    }
+  };
+  const getUsers1 = async () => {
+    try {
+      const email = await AsyncStorage.getItem("femail");
+      const fuserid = await AsyncStorage.getItem("fid");
+
+      console.log("Current user's email:", email);
+      // console.log("firebase form chat user Id:fuser-",fuserid);
+
+
+      if (email) {
+        setFromChatUserIdFbse(fuserid)
+        const firebaseDB = getFirestore();
+        const userCollection = collection(firebaseDB, 'users');
+        const usersQuery = query(userCollection, where('email', '!=', email));
+
+        // console.log("Users query:", usersQuery); // Check the users query
+
+        const querySnapshot = await getDocs(usersQuery);
+        const userData = querySnapshot.docs.map(documentSnapshot => ({
+          id: documentSnapshot.id,
+          fullName: documentSnapshot.get("name"),
+          mobile: documentSnapshot.get("mobile"),
+          email: documentSnapshot.get("email"),
+          ...documentSnapshot.data()
+        }));
+
+        console.log("Fetched users data:", userData); // Check the fetched users data
+        // console.log("firebase form chat user Id:fromchatuseridfbse-",fromChatUserIdFbse);
+
+
+        console.log("this is detail data:--", detaildata);
+
+        const detaildataEmail = detaildata[0]?.email;
+
+        // Finding the object in userData with a matching email
+        const matchingUser = userData.find(user => user.email === detaildataEmail);
+
+        if (matchingUser) {
+          // Perform your action here with the matching user object
+          console.log("Found matching user:", matchingUser);
+          setToChatUserEmailFbse(matchingUser.email)
+          setToChatUserNameFbse(matchingUser.fullName)
+          setToChatUserIdFbse(matchingUser.id)
+          setToChatUserMobileFbse(matchingUser.mobile)
+          // setIsModalVisible2(true)
 
           // Example: Access properties of the matching user object
           // e.g., matchingUser.id, matchingUser.name, matchingUser.whatever
