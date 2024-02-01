@@ -475,6 +475,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { firebaseDB } from '../../Config/Firebaseconfig';
 import uuid from 'react-native-uuid';
+// import 'expo-dev-client'
+
 
 
 type SignProps = {

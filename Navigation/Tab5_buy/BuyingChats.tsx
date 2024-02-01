@@ -5,11 +5,8 @@ import ChatBlank from './ChatBlank'
 const BuyingChats = () => {
   return (
     <View>
-    
-
-      <View>
-        <ChatBlank />
-      </View>
+      <Text>BuyingChats</Text>
+      <ChatBlank/>
     </View>
   )
 }

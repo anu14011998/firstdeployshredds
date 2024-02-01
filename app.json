@@ -2,7 +2,7 @@
   "expo": {
     "name": "second_project",
     "slug": "shreddersbay",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
@@ -33,7 +33,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "versionCode":2
       },
       "package": "com.shreddersbay"
     },

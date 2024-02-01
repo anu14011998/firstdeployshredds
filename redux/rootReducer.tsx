@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 // import dashboardReducer from './reducers/dashboardReducer';
 import dashboardReducer from './reducers/dashReducer';
-import loginReducer from './reducers/dashReducer';
+import loginReducer from './reducers/loginReducer';
 
 import myScrapDetailsReducer from './reducers/myScrapDetailsReducer';
 
