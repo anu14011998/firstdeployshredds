@@ -451,11 +451,13 @@
 
 
 
-import { Alert, StyleSheet, Text, View,Image, Animated, Easing} from 'react-native'
+import { Alert, StyleSheet, Text, View,Image, Animated, Easing, Dimensions} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import Swiper from 'react-native-swiper';
+// const { width } = Dimensions.get('window');
 
 const T4Screen1 = ({ navigation }) => {
   const [userId, setUserId] = useState(null)
@@ -550,6 +552,16 @@ const T4Screen1 = ({ navigation }) => {
 
     }
   }
+
+  const images = [
+    require('../../assets/login-vector.jpg'),
+    require('../../assets/scrap.jpeg'),
+    require('../../assets/scrap1.png'),
+    require('../../assets/scrap2.jpeg'),
+    require('../../assets/signup.jpg'),
+    
+  ];
+
 
   const orderDetail = () => {
     console.log("working fine");
@@ -807,25 +819,79 @@ useEffect(()=>{
  </View>
 
         </View>) : (
-         <View style={{ alignItems: 'center', marginTop: 50,}}>
-         <Text style={{ fontSize: 34,fontWeight:'400' }}>
-           User not exits please Signup or Login
-         </Text>
-         <View style={[styles.btnview,{backgroundColor:'#3498db'}]} >
+
+<View style={styles.containerlogin}>
+
+
+
+
+
+<View style={styles.sliderContainer}>
+  <Swiper
+    style={styles.wrapper}
+    autoplay={true}
+    autoplayTimeout={4}
+    showsPagination={false} // Hides the pagination dots
+  >
+    {images.map((image, index) => (
+      <View style={styles.slide} key={index}>
+        <Image style={styles.image} source={image} />
+      </View>
+    ))}
+  </Swiper>
+
+<View style={{marginTop: 30}}>
+  <Animated.View style={[styles.btnview, { opacity: fadeIn }]}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.text1}>
+          Login
+        </Text>
+      </TouchableOpacity>
+    </Animated.View>
+
+    <Animated.View style={[styles.btnview, { opacity: fadeIn, backgroundColor:'#336699' }]}>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+        <Text style={[styles.text1, {color: 'white',}]}>
+          Signup
+        </Text>
+      </TouchableOpacity>
+    </Animated.View>
+
+</View>
+</View>
+
+
+
+{/* <View style={[styles.btnview,{backgroundColor:'#3498db'}]} >
            <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
              <Text style={styles.text1}>
                Login
-             </Text>
+            </Text>
            </TouchableOpacity>
-         </View>
-         <View style={[styles.btnview,{backgroundColor:'#2ecc71'}]}>
-           <TouchableOpacity onPress={() => { navigation.navigate('Signup') }}>
-             <Text style={styles.text1}>
-               Signup
-             </Text>
-           </TouchableOpacity>
-         </View>
-       </View>
+          </View> */}
+</View>
+
+
+
+      //    <View style={{ alignItems: 'center', marginTop: 50,}}>
+      //    <Text style={{ fontSize: 34,fontWeight:'400' }}>
+      //      User not exits please Signup or Login
+      //    </Text>
+      //    <View style={[styles.btnview,{backgroundColor:'#3498db'}]} >
+      //      <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
+      //        <Text style={styles.text1}>
+      //          Login
+      //        </Text>
+      //      </TouchableOpacity>
+      //    </View>
+      //    <View style={[styles.btnview,{backgroundColor:'#2ecc71'}]}>
+      //      <TouchableOpacity onPress={() => { navigation.navigate('Signup') }}>
+      //        <Text style={styles.text1}>
+      //          Signup
+      //        </Text>
+      //      </TouchableOpacity>
+      //    </View>
+      //  </View>
   
         )}
 
@@ -836,6 +902,34 @@ useEffect(()=>{
 export default T4Screen1
 
 const styles = StyleSheet.create({
+
+  containerlogin: {
+    flex: 1,
+    alignItems: 'center',
+    
+ 
+    
+   
+  },
+  sliderContainer: {
+     width: "90%", // Set the width of the container view
+     height: 550,
+     marginTop: 40,
+     // Set the height of the container view
+  },
+  wrapper: {},
+  slide: {
+    flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
+  image: {
+     width: "100%", // Set the image width to fill the container
+    height: '100%', // Set the image height to fill the container
+    resizeMode: 'cover',
+    borderRadius: 20,
+  },
+
   icon1: {
 
 
@@ -855,30 +949,31 @@ const styles = StyleSheet.create({
 
 
   text1: {
-    fontSize: 35,
+    fontSize: 25,
     fontWeight:'600',
+    textAlign: 'center',
+    color: 'black',
   },
   text2: {
     fontSize: 14,
   },
+
+
   btnview: {
-    height: '24%',
-    width: '95%',
+   
     borderRadius: 10,
     borderWidth: 2,
     borderColor: 'gray',
     marginTop: 20,
-    alignContent: 'center',
-    paddingLeft: 15,
-    paddingTop: 5,
+    padding: 10,
+    backgroundColor: '#a6a6a6',
+    justifyContent: 'center',
     
-    alignItems:'center',
-    paddingleft:30,
-    padding:10,
+    
   },
-  view: {
 
-  },
+
+ 
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

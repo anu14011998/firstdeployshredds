@@ -12,11 +12,12 @@
         "buildType": "apk",
         "distribution": "internal"
       }
-    
     },
-
- 
-
+    "distribution": {
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
     "production": {}
   },
   "submit": {
