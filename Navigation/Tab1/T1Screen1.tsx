@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal, TouchableWithoutFeedback, RefreshControl, Pressable, Alert, Dimensions, Linking } from 'react-native'
+import { View, Text, Button, TouchableOpacity, ScrollView, TextInput, Image, Modal, TouchableWithoutFeedback, RefreshControl, Pressable, Alert, Dimensions, Linking, Platform } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect, useCallback } from 'react'
 import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -187,9 +187,9 @@ const T1Screen1 = ({ navigation }) => {
 
   const [user_id, setUserIds] = useState(null) // User ID
   const [userDataLOCAL_STORAGE, setUserDataLocalStorage] = useState(null);
-  const [isAppUpdateModalVisible,setIsAppUpdateModalVisible] =useState(false);
-  const closeUpdateAppModal =()=>{
-    setIsAppUpdateModalVisible(!isAppUpdateModalVisible)
+  const [isandroidUpdateModalVisible,setIsandroidUpdateModalVisible] =useState(true);
+  const setUpdateModal =()=>{
+    setIsandroidUpdateModalVisible(false)
   }
 
   useEffect(() => {
@@ -222,23 +222,44 @@ const T1Screen1 = ({ navigation }) => {
     fetchData();
     // console.log(data);
     // console.log("my filtered data is :-",userfilterdata);
+    // async function onFetchUpdateAsync() {
+    //   try {
+    //     const update = await Updates.checkForUpdateAsync();
+  
+    //     if (update.isAvailable) {
+    //       // await Updates.fetchUpdateAsync();
+    //       // await Updates.reloadAsync();
+          // setIsAppUpdateModalVisible(isAppUpdateModalVisible)
+    //     }
+    //   } catch (error) {
+    //     // You can also add an alert() to see the error message in case of an error when fetching updates.
+    //     // alert(`Error fetching latest Expo update: ${error}`);
+    //     console.log(`Error fetching latest Expo update: ${error}`);
+        
+    //   }
+    // }
+    // onFetchUpdateAsync()
     async function onFetchUpdateAsync() {
+      const osName = Platform.OS;
+      console.log(`The os name is ${osName}`);
+      
       try {
         const update = await Updates.checkForUpdateAsync();
   
-        if (update.isAvailable) {
+        if (update.isAvailable && Platform.OS === 'android') {
           // await Updates.fetchUpdateAsync();
           // await Updates.reloadAsync();
-          setIsAppUpdateModalVisible(isAppUpdateModalVisible)
+          setIsandroidUpdateModalVisible(true);
+        }else{
+          setIsandroidUpdateModalVisible(false)
         }
       } catch (error) {
         // You can also add an alert() to see the error message in case of an error when fetching updates.
-        // alert(`Error fetching latest Expo update: ${error}`);
         console.log(`Error fetching latest Expo update: ${error}`);
-        
       }
     }
-    onFetchUpdateAsync()
+    
+    onFetchUpdateAsync();
 
 
   }, []);
@@ -575,7 +596,7 @@ const T1Screen1 = ({ navigation }) => {
       />
       </View>
         </Modal>
-        <AskForAppUpdate />
+        <AskForAppUpdate isAndroidUpdateModal={isandroidUpdateModalVisible} setUpdateModal={setUpdateModal}/>
       </View>
      
 
@@ -1140,21 +1161,77 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+
+
   updateModalView1: {
     flex: 1,
     justifyContent: 'flex-end',
+   
   },
+
+
   transparentTop: {
     flex: 1,
     backgroundColor: 'transparent',
+    
   },
+
+
   blackBottom: {
     height: '35%',
     backgroundColor: 'white',
+    // borderTopColor: '#eee',
+    // borderWidth: 1,
   },
- 
 
-  // Add other styles as needed
+  //updatemodalcss
+
+
+    iconimg:{
+
+      width: 100,
+      height: 100,
+      border: 10,
+      borderRadius: 20,
+      margin: 10,
+
+    },
+
+    updateicon:{
+      flex: 1,
+      flexDirection: 'row',
+      gap: 15,
+    },
+
+    shreds:{
+      fontSize: 30,
+      fontWeight: '600',
+      color: 'black',
+      marginTop: 8,
+      
+    },
+
+    shredsbay:{
+ 
+      fontSize: 20,
+      color:'gray',
+      marginTop: 8,
+      marginright: 10,
+    },
+
+
+    text:{
+
+    },
+
+    updatebtn:{
+        flex: 1,
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginTop: 50,
+    }
+  
 });
 export default T1Screen1
 
@@ -1269,42 +1346,113 @@ const MainChats: React.FC<{
   );
 };
 
-const AskForAppUpdate: React.FC = () => {
+const AskForAppUpdate: React.FC<{isAndroidUpdateModal:boolean; setUpdateModal:()=>void}> =  ({isAndroidUpdateModal,setUpdateModal})=>{
+  const handleUpdateModal =async()=>{
+    const url ="https://play.google.com/store/apps/details?id=com.shreddersbay";
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if(supported){
+        await Linking.openURL(url);
+      }else{
+        console.log(`Don't know how to Open Url: ${url}`);
+        
+      }
+    } catch (error) {
+      console.log(`Error occured while opening the url: ${error}`);
+      
+    }
+  }
+
+
   return (
    
-   <Modal transparent={true}>
+<Modal transparent={true} visible={isAndroidUpdateModal} onRequestClose={()=>setUpdateModal()}>
   <View style={styles.updateModalView1}>
     <View style={styles.transparentTop}></View>
     <View style={styles.blackBottom }>
-      <Text> new version is </Text>
+     
 
-      <Image  source={require('../../assets/UpdateImage.jpeg')} height={30} width={110} />
-      <View> 
+      <View style={styles.updateicon}>
 
-        {/* <View>
-            <TouchableOpacity>
-              <Text>
-                Uninstall
-              </Text>
-            </TouchableOpacity>
-        </View>
+              <View>
+                 <Image source={require('../../assets/icon2.png')} style={styles.iconimg} />
+              </View>
 
-        <View>
-            <TouchableOpacity>
-              <Text>
-                Uninstall
-              </Text>
-            </TouchableOpacity>
-        </View> */}
+              <View style={styles.text}>
+                <Text style={styles.shreds}> ShreddersBay:</Text>
+               
+                <Text style={styles.shreds}> Buy Sell Auction</Text>
 
-        <Button title='Update'/>
-        <Button title='not now'/>
+                <Text style={styles.shredsbay}>ShreddersBay</Text>
+              </View>
+
+            
       </View>
+
+      <View style={styles.updatebtn}>
+              <TouchableOpacity  
+             style={{
+              borderWidth: 2,             // Adjust the border width as needed
+              borderColor: 'gray',        // Change the border color                                          // Adjust the padding
+              borderRadius: 8,            // Add border radius for rounded corners
+              backgroundColor: 'white',
+              margin: 10, 
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 170,
+              height: 50,
+              // paddingHorizontal: 40,
+              // paddingVertical: 6,
+              
+            }}
+            onPress={()=>setUpdateModal()}
+               >
+                <Text style={{fontSize: 20}}>
+                  Not Now
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+               style={{
+                borderWidth: 2,             // Adjust the border width as needed
+                borderColor: 'blue',        // Change the border color                                          // Adjust the padding
+                borderRadius: 8,            // Add border radius for rounded corners
+                backgroundColor: 'blue',
+                margin: 10, 
+                alignItems: 'center',
+                justifyContent: 'center',
+                // paddingHorizontal: 10,
+                // paddingVertical: 8,
+                width: 170,
+                height: 50,
+                
+                
+              }}
+              onPress={()=>handleUpdateModal()}
+              >
+                  <Text style=
+                  {
+                    {color: 'white',
+                     fontSize: 20,
+                     fontWeight: '500'
+                     }}
+                     >
+                    Update
+                  </Text>
+              </TouchableOpacity>
+      </View >
+
+      {/* <Image  source={require('../../assets/UpdateImage.jpeg')}  /> */}
+     
     </View>
   </View>
 </Modal>
   );
+  
 };
+
+
+
 
 
 
