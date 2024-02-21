@@ -36,12 +36,13 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.shreddersbay",
-      "versionCode":2
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "owner": "vinitrathore",
+    "scheme": "second_project",
     "plugins": [
       [
         "expo-updates",
@@ -49,6 +50,12 @@
           "username": "vinitrathore"
         }
       ]
-    ]
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/899a3d51-4ab2-46d5-a140-644e3ad1b7be"
+    }
   }
 }

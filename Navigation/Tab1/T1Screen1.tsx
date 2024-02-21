@@ -794,14 +794,13 @@ const T1Screen1 = ({ navigation }) => {
 
 }
 const styles = StyleSheet.create({
-
   image2: {
     width: 100,
     height: 100,
   },
   imageContainer1: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 10,
   },
 
@@ -810,8 +809,7 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 4,
     borderRadius: 4,
-    borderColor: '#ddd',
-
+    borderColor: "#ddd",
   },
 
   centeredView: {
@@ -822,11 +820,11 @@ const styles = StyleSheet.create({
   modalView: {
     // #666666
     margin: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 2,
       height: 2,
@@ -837,99 +835,84 @@ const styles = StyleSheet.create({
     elevation: 50,
   },
 
-
   buttonClose: {
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     right: 10,
-    backgroundColor: '#cccc00',
+    backgroundColor: "#cccc00",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
   },
 
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-
+    color: "white",
+    fontWeight: "bold",
   },
   modalText: {
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: "center",
   },
 
-
-  // 
-
+  //
 
   heading1: {
-    marginTop: 10, 
+    marginTop: 10,
     marginLeft: 7,
-
   },
 
   accept: {
-
     fontSize: 20,
-    color: 'black',
+    color: "black",
     borderWidth: 1,
     borderRadius: 50,
     padding: 8,
-    borderColor: 'transparent',
-    backgroundColor: '#ddd',
-
+    borderColor: "transparent",
+    backgroundColor: "#ddd",
   },
 
   delete: {
-
     fontSize: 20,
-    color: '#fff',
+    color: "#fff",
     borderWidth: 1,
     borderRadius: 2,
     padding: 5,
     backgroundColor: "red",
-
   },
 
   detail: {
-
     fontSize: 20,
-    color: 'black',
-    borderColor: 'transparent',
+    color: "black",
+    borderColor: "transparent",
     borderWidth: 1,
     borderRadius: 90,
     paddingHorizontal: 35,
     paddingVertical: 10,
-    backgroundColor: '#cccc00',
-
+    backgroundColor: "#cccc00",
   },
 
-
-
   image1: {
-
     width: 50,
     height: 50,
     marginRight: 8,
   },
 
   card1: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     marginVertical: 10,
   },
 
-
   card: {
-    width: '48%', // Adjust width as per your requirement
+    width: "48%", // Adjust width as per your requirement
     marginBottom: 10,
     padding: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: 'gray',
+    borderColor: "gray",
     // shadowColor: '#000',
     // shadowOffset: {
     //   width: 0,
@@ -945,131 +928,109 @@ const styles = StyleSheet.create({
   },
 
   textContainer3: {
-
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 20,
-    justifyContent: 'center',
-
+    justifyContent: "center",
   },
 
   textContainer2: {
     fontSize: 22,
-    fontWeight: '600',
-    color: 'black',
+    fontWeight: "600",
+    color: "black",
     marginBottom: 5,
   },
 
   textContainer4: {
     fontSize: 15,
-    color: 'black',
+    color: "black",
     marginBottom: 5,
     marginRight: 5,
   },
   textContainer5: {
     fontSize: 19,
-    color: 'black',
+    color: "black",
     marginBottom: 2,
-
   },
 
   textContainer6: {
     fontSize: 15,
     marginTop: 10,
-    color: 'gray',
+    color: "gray",
     marginBottom: 2,
-
   },
 
-
   imageContainer: {
-    width: '100%',
+    width: "100%",
     height: 120,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    overflow: 'hidden',
-    alignItems: 'center',
+    overflow: "hidden",
+    alignItems: "center",
   },
 
-
   logo: {
-
-    flexDirection: 'row',
+    flexDirection: "row",
     // alignItems: 'center'
     // textAlign: 'center
-
   },
 
   container: {
     flex: 1,
     marginTop: 20,
     padding: 10,
-    backgroundColor: 'white',
-   
-
+    backgroundColor: "white",
   },
 
   container1: {
     marginBottom: 8,
     borderBottomWidth: 1,
     paddingBottom: 8,
-    borderBottomColor: '#CCC',
-    flexDirection: 'row',
-
+    borderBottomColor: "#CCC",
+    flexDirection: "row",
   },
 
   container2: {
-
     padding: 10,
     margin: 10,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'white',
+    flexDirection: "row",
+    backgroundColor: "white",
     borderWidth: 2,
-    borderColor: '#ccc',
-
-
-
+    borderColor: "#ccc",
   },
 
   scrollView: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: "white",
     // #e6e6e6
   },
 
   contentContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   text1: {
-    color: 'black',
+    color: "black",
   },
 
   container3: {
     padding: 10,
   },
 
-  container4: {
-
-  },
-  container5: {
-
-  },
+  container4: {},
+  container5: {},
 
   scrollContent: {
     padding: 11,
   },
 
   order: {
-
     fontSize: 25,
-    color: '#00457E',
+    color: "#00457E",
     // fontFamily: 'sans-sarif',
     marginBottom: 20,
-    marginTop: 20
-
-
+    marginTop: 20,
   },
 
   tinyLogo: {
@@ -1078,25 +1039,22 @@ const styles = StyleSheet.create({
     marginRight: 8,
     padding: 5,
     borderWidth: 2,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 20,
-
-
   },
 
   tinyLogo1: {
-    width: '100%',
+    width: "100%",
     height: 300,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
 
   heading: {
     fontSize: 25,
-    fontWeight: 'bold',
-    color: '#00457E',
-    alignItems: 'center',
+    fontWeight: "bold",
+    color: "#00457E",
+    alignItems: "center",
     marginTop: 8,
-
   },
 
   searchbox: {
@@ -1104,33 +1062,28 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     marginTop: 10,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: "#000",
     borderRadius: 8,
     borderBottomWidth: 1,
     width: "80%",
     height: "60%",
-
-
   },
   image: {
     height: 100,
     width: 140,
     marginTop: 5,
-
-
-
   },
 
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 8,
   },
   userItem: {
-    width: Dimensions.get('window').width - 50,
-    alignSelf: 'center',
+    width: Dimensions.get("window").width - 50,
+    alignSelf: "center",
     marginTop: 20,
-    flexDirection: 'column',
+    flexDirection: "column",
     borderWidth: 0.5,
     borderRadius: 10,
     padding: 10,
@@ -1138,14 +1091,14 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     padding: 10,
-    backgroundColor: 'lightcoral',
+    backgroundColor: "lightcoral",
     borderRadius: 5,
   },
   modalContainer: {
     flex: 1,
 
     // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background color
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
 
   header: {
@@ -1162,76 +1115,61 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-
   updateModalView1: {
     flex: 1,
-    justifyContent: 'flex-end',
-   
+    justifyContent: "flex-end",
   },
-
 
   transparentTop: {
     flex: 1,
-    backgroundColor: 'transparent',
-    
+    backgroundColor: "transparent",
   },
 
-
   blackBottom: {
-    height: '35%',
-    backgroundColor: 'white',
+    height: "35%",
+    backgroundColor: "white",
     // borderTopColor: '#eee',
     // borderWidth: 1,
   },
 
   //updatemodalcss
 
+  iconimg: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    margin: 10,
+  },
 
-    iconimg:{
+  updateicon: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 15,
+  },
 
-      width: 100,
-      height: 100,
-      border: 10,
-      borderRadius: 20,
-      margin: 10,
+  shreds: {
+    fontSize: 30,
+    fontWeight: "600",
+    color: "black",
+    marginTop: 8,
+  },
 
-    },
+  shredsbay: {
+    fontSize: 20,
+    color: "gray",
+    marginTop: 8,
+    marginRight: 10, // Changed from marginright to marginRight
+  },
 
-    updateicon:{
-      flex: 1,
-      flexDirection: 'row',
-      gap: 15,
-    },
+  text: {},
 
-    shreds:{
-      fontSize: 30,
-      fontWeight: '600',
-      color: 'black',
-      marginTop: 8,
-      
-    },
-
-    shredsbay:{
- 
-      fontSize: 20,
-      color:'gray',
-      marginTop: 8,
-      marginright: 10,
-    },
-
-
-    text:{
-
-    },
-
-    updatebtn:{
-        flex: 1,
-        flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'center',
-        marginTop: 50,
-    }
-  
+  updatebtn: {
+    flex: 1,
+    flexDirection: "row",
+    textAlign: "center",
+    justifyContent: "center",
+    marginTop: 50,
+  },
 });
 export default T1Screen1
 
