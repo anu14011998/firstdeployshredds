@@ -2,7 +2,7 @@
   "expo": {
     "name": "second_project",
     "slug": "shreddersbay",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shreddersbay"
+      "bundleIdentifier": "com.shreddersbay",
+      "minVersion": "14.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,21 +37,13 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.shreddersbay",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "owner": "vinitrathore",
     "scheme": "second_project",
-    "plugins": [
-      [
-        "expo-updates",
-        {
-          "username": "vinitrathore"
-        }
-      ]
-    ],
     "runtimeVersion": {
       "policy": "appVersion"
     },

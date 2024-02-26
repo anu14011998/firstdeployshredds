@@ -187,7 +187,7 @@ const T1Screen1 = ({ navigation }) => {
 
   const [user_id, setUserIds] = useState(null) // User ID
   const [userDataLOCAL_STORAGE, setUserDataLocalStorage] = useState(null);
-  const [isandroidUpdateModalVisible,setIsandroidUpdateModalVisible] =useState(true);
+  const [isandroidUpdateModalVisible,setIsandroidUpdateModalVisible] =useState(false);
   const setUpdateModal =()=>{
     setIsandroidUpdateModalVisible(false)
   }
@@ -247,11 +247,13 @@ const T1Screen1 = ({ navigation }) => {
         const update = await Updates.checkForUpdateAsync();
   
         if (update.isAvailable && Platform.OS === 'android') {
-          // await Updates.fetchUpdateAsync();
-          // await Updates.reloadAsync();
+          //  await Updates.fetchUpdateAsync();
+          //  await Updates.reloadAsync();
           setIsandroidUpdateModalVisible(true);
         }else{
           setIsandroidUpdateModalVisible(false)
+           await Updates.fetchUpdateAsync();
+           await Updates.reloadAsync();
         }
       } catch (error) {
         // You can also add an alert() to see the error message in case of an error when fetching updates.
@@ -290,7 +292,7 @@ const T1Screen1 = ({ navigation }) => {
         const fuserid = await AsyncStorage.getItem("fid");
   
         console.log("Current user's email:", email);
-        // console.log("firebase form chat user Id:fuser-",fuserid);
+        console.log("firebase form chat user Id:fuser-",fuserid);
   
   
         if (email) {
@@ -355,7 +357,7 @@ const T1Screen1 = ({ navigation }) => {
       const fuserid = await AsyncStorage.getItem("fid");
 
       console.log("Current user's email:", email);
-      // console.log("firebase form chat user Id:fuser-",fuserid);
+      console.log("firebase form chat user Id:fuser-",fuserid);
 
 
       if (email) {
@@ -1346,7 +1348,7 @@ const AskForAppUpdate: React.FC<{isAndroidUpdateModal:boolean; setUpdateModal:()
             onPress={()=>setUpdateModal()}
                >
                 <Text style={{fontSize: 20}}>
-                  Not Now
+                  Later
                 </Text>
               </TouchableOpacity>
 

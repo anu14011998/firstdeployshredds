@@ -1,1106 +1,3 @@
-// // // import { View, Text, StyleSheet, TextInput, Image, SafeAreaView, Alert } from 'react-native';
-// // // import React, { useEffect, useState } from 'react';
-// // // // import axios from 'axios';
-// // // import Ionicons from 'react-native-vector-icons/Ionicons';
-// // // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// // // import { TouchableOpacity } from 'react-native';
-// // // import { NavigationProp } from '@react-navigation/native';
-// // // // import Screen3 from '../navigation/Screen3';
-// // // import AsyncStorage from '@react-native-async-storage/async-storage';
-// // // import { useDispatch } from 'react-redux';
-// // // // import { setUserId } from '../Context/userSlice';
-// // // import { useNavigation } from '@react-navigation/native'
-// // // import { CommonActions } from '@react-navigation/native';
-
-
-
-// // // type LoginProps = {
-// // //   navigation: NavigationProp<any>;
-// // // };
-// // // const Login = ({ navigation }: LoginProps) => {
-
-// // //   const [email, setEmail] = useState('');
-// // //   const [password, setPassword] = useState('');
-// // //   const [emailError, setEmailError] = useState('');
-// // //   const [passwordError, setPasswordError] = useState('');
-// // //   // const[userId,setUserId] = useState('')
-// // //   const dispatch = useDispatch();
-
- 
-// // //   const isValidEmail = (email: any) => {
-// // //     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-// // //     const hasNumber = /\d/.test(email);
-// // //     return emailRegex.test(email) && hasNumber;
-// // //   };
-
-// // //   const handleEmailChange = (input: any) => {
-// // //     setEmail(input);
-// // //     if (isValidEmail(input)) {
-// // //       setEmailError('');
-// // //     }
-// // //   };
-// // //   const isValidPassword = (password: string) => {
-// // //     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-// // //     return passwordRegex.test(password);
-// // //   };
-
-// // //   const handlePasswordChange = (input: string) => {
-// // //     setPassword(input);
-// // //     if (isValidPassword(input)) {
-// // //       setPasswordError('');
-// // //     }
-// // //   };
-
-// // //   const handleLogin = async () => {
-// // //     if (!isValidEmail(email)) {
-// // //       setEmailError('Invalid email address');
-// // //     }
-
-// // //     if (!isValidPassword(password)) {
-// // //       setPasswordError('Invalid password');
-// // //     }
-
-// // //     if (isValidEmail(email) && isValidPassword(password)) {
-// // //       console.log('Login data submitted:', {
-// // //         email,
-// // //         password,
-// // //       });
-
-// // //       // Your login logic goes here...
-// // //       try {
-// // //         const formData = new FormData();
-// // //         formData.append('email', email);
-// // //         formData.append('password', password);
-
-// // //         const response = await fetch('https://shreddersbay.com/API/user_api.php?action=signin', {
-// // //           method: 'POST',
-// // //           body: formData,
-// // //         });
-
-// // //         if (response.ok) {
-// // //           const responseData = await response.json();
-// // //           console.log('Login Successful:', responseData);
-// // //           ///////          setUserCred(responseData);
-// // //           const userId = responseData["0"].id;
-// // //           // const data = await response.json()
-
-
-// // //           // dispatch(setUserId(id))
-// // //           console.log("my id is:--", userId);
-
-// // //           try {
-// // //             await AsyncStorage.setItem("userId", userId)
-// // //           //   dispatch(setUserId(userId))
-// // //             // navigation.navigate('Tab1')
-
-// // //             ///////////////////////////////////////////////////////////
-
-// // //             console.log("data set successfully");
-// // //             Alert.alert(
-// // //               "Login Successfully",
-// // //               "You have successfully logged in.",
-// // //               [
-// // //                 {
-// // //                   text: "OK",
-// // //                   onPress: () => {
-// // //                     // Reset the navigation stack to 'Screen1' removing all screens
-// // //                     navigation.dispatch(
-// // //                       CommonActions.reset({
-// // //                         index: 0,
-// // //                         routes: [{ name: 'Screen1' }], // Replace 'Screen1' with your root screen name
-// // //                       })
-// // //                     );
-// // //                   },
-// // //                 },
-// // //               ],
-// // //               { cancelable: false }
-// // //             );
-// // //           } catch (error) {
-// // //             console.log("data is not set ")
-// // //           }
-
-// // //           // Handle successful login here (e.g., navigate to another screen)
-// // //           // navigation.navigate('Home');
-// // //         } else {
-// // //           console.error('Login failed:', response.status);
-// // //           // Handle failed login (show error message, etc.)
-// // //         }
-// // //       } catch (error) {
-// // //         console.error('Error during login:', error);
-// // //         // Handle other errors (network, server unreachable, etc.)
-// // //       }
-// // //     } else {
-// // //       console.log('Login data is not valid.');
-// // //     }
-// // //   };
-
-
-// // //   return (
-// // //     <SafeAreaView style={styles.container}>
-// // //       <View style={styles.container1}>
-// // //         <View style={styles.signuplogo}>
-// // //           <Image style={styles.tinyLogo}
-// // //             source={require('../../assets/istockphoto2.png')} />
-// // //         </View>
-
-// // //         <View style={{ padding: 10 }}>
-// // //           <View style={styles.container2}>
-// // //             <MaterialCommunityIcons name="email-outline" size={30} color="#666" style={styles.icon} />
-// // //             <TextInput
-// // //               placeholder='Email'
-// // //               keyboardType='email-address'
-// // //               value={email}
-// // //               onChangeText={handleEmailChange}
-// // //               style={styles.textinput}
-// // //             />
-
-// // //           </View>
-// // //           <Text style={{ color: 'red' }}>{emailError}</Text>
-// // //           <View style={styles.container3}>
-// // //             <Ionicons name="lock-closed-outline" size={30} color="#666" style={styles.icon} />
-// // //             <TextInput
-// // //               placeholder='Password'
-// // //               secureTextEntry={true}
-// // //               value={password}
-// // //               onChangeText={handlePasswordChange}
-// // //               textContentType='password'
-// // //               style={styles.textinput}
-// // //             />
-
-
-// // //             <TouchableOpacity onPress={() => { }}>
-// // //               <Text style={{ fontSize: 17, marginTop: 14, color: '#002699' }} >Forgot?</Text>
-// // //             </TouchableOpacity>
-
-// // //           </View>
-// // //           <Text style={{ color: 'red', }}>{passwordError}</Text>
-// // //         </View>
-
-// // //         <View>
-// // //           <TouchableOpacity onPress={handleLogin} style={styles.login}>
-// // //             <Text style={styles.loginText}>Login</Text>
-// // //           </TouchableOpacity>
-// // //         </View>
-
-// // //         <Text style={{ textAlign: 'center', color: '#666', marginTop: 20, marginBottom: 20 }}>
-// // //           Or, login with ...
-// // //         </Text>
-
-// // //         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
-// // //           <TouchableOpacity onPress={() => { }} style={styles.container4}>
-// // //             <Ionicons name="logo-google" size={26} color="red" style={styles.icon1} />
-// // //           </TouchableOpacity>
-
-// // //           <TouchableOpacity onPress={() => { }} style={styles.container5}>
-// // //             <Ionicons name="phone-portrait" size={26} color="blue" style={styles.icon2} />
-// // //           </TouchableOpacity>
-// // //         </View>
-
-// // //         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30 }}>
-// // //           <Text style={{ marginTop: 3, marginRight: 5 }}>New to the app?</Text>
-// // //           <TouchableOpacity >
-// // //             <Text style={{ color: '#002699', fontWeight: '700', fontSize: 18 }}
-// // //               onPress={() => navigation.navigate('Signup')}
-// // //             >Signup</Text>
-// // //           </TouchableOpacity>
-// // //         </View>
-// // //       </View>
-// // //     </SafeAreaView>
-// // //   );
-// // // };
-
-// // // const styles = StyleSheet.create({
-// // //   container: {
-// // //     flex: 1,
-// // //   },
-// // //   tinyLogo: {
-// // //     width: 300,
-// // //     height: 120,
-// // //   },
-// // //   signuplogo: {
-// // //     justifyContent: 'center',
-// // //   },
-// // //   container1: {
-// // //     margin: 20,
-// // //     padding: 20,
-// // //   },
-// // //   container2: {
-// // //     flexDirection: 'row',
-// // //     borderBlockEndColor: '#ccc',
-// // //     borderBottomWidth: 1,
-// // //     marginTop: 15,
-// // //   },
-// // //   container3: {
-// // //     flexDirection: 'row',
-// // //     borderBlockEndColor: '#ccc',
-// // //     borderBottomWidth: 1,
-// // //     marginBottom: 4,
-// // //     marginTop: 20,
-// // //   },
-// // //   textinput: {
-// // //     fontSize: 20,
-// // //     flex: 1,
-// // //     paddingVertical: 0,
-// // //     marginTop: 6,
-// // //   },
-// // //   icon: {
-// // //     marginTop: 15,
-// // //     paddingBottom: 4,
-// // //     marginRight: 10,
-// // //   },
-// // //   login: {
-// // //     backgroundColor: '#002699',
-// // //     padding: 13,
-// // //     borderRadius: 10,
-// // //     marginTop: 20,
-// // //   },
-// // //   loginText: {
-// // //     color: '#fff',
-// // //     fontSize: 17,
-// // //     alignItems: 'center',
-// // //     fontWeight: '600',
-// // //     textAlign: 'center',
-// // //   },
-// // //   container4: {
-// // //     borderColor: 'red',
-// // //     borderWidth: 1,
-// // //     borderRadius: 10,
-// // //     paddingHorizontal: 20,
-// // //     paddingVertical: 8,
-// // //     marginRight: 10,
-// // //   },
-// // //   container5: {
-// // //     borderColor: 'blue',
-// // //     borderWidth: 1,
-// // //     borderRadius: 10,
-// // //     paddingHorizontal: 20,
-// // //     paddingVertical: 8,
-// // //     marginRight: 10,
-// // //   },
-// // //   icon1: {},
-// // //   icon2: {},
-// // // });
-
-// // // export default Login;
-
-
-// // import { View, Text, StyleSheet, TextInput, Image, SafeAreaView, Alert } from 'react-native';
-// // import React, { useEffect, useState } from 'react';
-// // // import axios from 'axios';
-// // import Ionicons from 'react-native-vector-icons/Ionicons';
-// // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// // import { TouchableOpacity } from 'react-native';
-// // import { NavigationProp, useRoute } from '@react-navigation/native';
-// // // import Screen3 from '../navigation/Screen3';
-// // import AsyncStorage from '@react-native-async-storage/async-storage';
-// // import { useDispatch } from 'react-redux';
-// // // import { setUserId } from '../Context/userSlice';
-// // import { useNavigation } from '@react-navigation/native'
-// // import { CommonActions } from '@react-navigation/native';
-// // import { setLoginData } from '../../redux/actions/loginAction';
-// // import { collection, getDocs, query, where } from 'firebase/firestore';
-// // import { firebaseDB } from '../../Config/Firebaseconfig';
-// // // import 'expo-dev-client'
-
-
-// // // const Login = ({ navigation }: LoginProps) => {
-
-// // type LoginProps = {
-// //   navigation: NavigationProp<any>;
-// // };
-// // const Login = ({ navigation }: LoginProps) => {
-
-// //   const [email, setEmail] = useState('');
-// //   const [password, setPassword] = useState('');
-// //   const [emailError, setEmailError] = useState('');
-// //   const [passwordError, setPasswordError] = useState('');
-// //   // const[userId,setUserId] = useState('')
-// //   const dispatch = useDispatch();
-
-
-
-// //   //////////////////////////////
-
-
-
-
-
-
-
-
-
-
-// //   //////////////////////////
- 
-// //   const isValidEmail = (email: any) => {
-// //     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-// //     const hasNumber = /\d/.test(email);
-// //     return emailRegex.test(email) && hasNumber;
-// //   };
-
-// //   const handleEmailChange = (input: any) => {
-// //     setEmail(input);
-// //     if (isValidEmail(input)) {
-// //       setEmailError('');
-// //     }
-// //   };
-// //   const isValidPassword = (password: string) => {
-// //     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-// //     return passwordRegex.test(password);
-// //   };
-
-// //   const handlePasswordChange = (input: string) => {
-// //     setPassword(input);
-// //     if (isValidPassword(input)) {
-// //       setPasswordError('');
-// //     }
-// //   };
-
-// //   const handleLogin = async () => {
-// //     if (!isValidEmail(email)) {
-// //       setEmailError('Invalid email address');
-// //     }
-
-// //     if (!isValidPassword(password)) {
-// //       setPasswordError('Invalid password');
-// //     }
-
-// //     if (isValidEmail(email) && isValidPassword(password)) {
-// //       console.log('Login data submitted:', {
-// //         email,
-// //         password,
-// //       });
-
-// //       // Your login logic goes here...
-// //       try {
-// //         const formData = new FormData();
-// //         formData.append('email', email);
-// //         formData.append('password', password);
-
-// //         const response = await fetch('https://shreddersbay.com/API/user_api.php?action=signin', {
-// //           method: 'POST',
-// //           body: formData,
-// //         });
-
-// //         if (response.ok) {
-// //           const responseData = await response.json();
-// //           console.log('Login Successful:', responseData);
-// //           ///////          setUserCred(responseData);
-// //           const userId = responseData["0"].id;
-// //           // const data = await response.json()
-// //           console.log("my id is:--", userId);
-
-// //           dispatch(setLoginData(responseData));
-
-
-// //           try {
-           
-// //             try {
-// //               await AsyncStorage.setItem("UserCred", JSON.stringify(responseData));
-// //               console.log('Data stored successfully');
-// //             } catch (error) {
-// //               console.error('Error storing data:', error);
-// //             }
-// //             ///////////////////////////////////////////////////////////
-
-// //             console.log("data set successfully");
-// //             Alert.alert(
-// //               "Login Successfully",
-// //               "You have successfully logged in.",
-// //               [
-// //                 {
-// //                   text: "OK",
-// //                   onPress: () => {
-// //                     // Reset the navigation stack to 'Screen1' removing all screens
-// //                     // navigation.navigate("T1Screen1")
-// //                     LoginWithfirebase(email, password);
-// //                     navigation.navigate('Tab1', { screen: 'T1Screen1' });
-
-
-
-// //                   },
-// //                   // onPress: () => {
-// //                   //   // Reset the navigation stack to 'Screen1' removing all screens
-// //                   //   const resetAction = CommonActions.reset({
-// //                   //     index: 0,
-// //                   //     routes: [{ name: 'T1Screen1' }],
-// //                   //   });
-// //                   //   navigation.dispatch(resetAction);
-// //                   // },
-// //                 },
-// //               ],
-// //               { cancelable: false }
-// //             );
-// //           } catch (error) {
-// //             console.log("data is not set ")
-// //           }
-
-// //           // Handle successful login here (e.g., navigate to another screen)
-// //           // navigation.navigate('Home');
-// //         } else {
-// //           console.error('Login failed:', response.status);
-// //           // Handle failed login (show error message, etc.)
-// //         }
-// //       } catch (error) {
-// //         console.error('Error during login:', error);
-// //         // Handle other errors (network, server unreachable, etc.)
-// //       }
-// //     } else {
-// //       console.log('Login data is not valid.');
-// //     }
-// //   };
-// //   const LoginWithfirebase = async (email1: string, password: string) => {
-
-// //     //   if ((email !== null) && (password !== null)) {
-// //     //     await signInWithEmailAndPassword(
-// //     //       firebaseAuth, email, password
-// //     //     ).then(
-// //     //       (userCred) => {
-// //     //         if (userCred) {
-// //     //           console.log("User Id:", userCred?.user.uid);
-// //     //           getDoc(doc(firebaseDB, "users", userCred?.user.uid)).then(
-// //     //             async (DocumentSnapshot) => {
-// //     //               if (DocumentSnapshot.exists()) {
-// //     //                 console.log("User Data: ", DocumentSnapshot.data());
-// //     //                 const floginuserdata=DocumentSnapshot.data();
-// //     //                 dispatch(setfirebaseLoginData(floginuserdata))
-// //     //                 try {
-// //     //   // ... existing code to fetch user data and dispatch it
-
-// //     //   // Check and set valid values in AsyncStorage
-// //     //   const userData = DocumentSnapshot.data();
-// //     //   if (userData) {
-// //     //     if (userData.fullName) {
-// //     //       await AsyncStorage.setItem("fcuserFullname", userData.fullName);
-// //     //     }
-// //     //     if (userData._id) {
-// //     //       await AsyncStorage.setItem("fcuserId", userData._id);
-// //     //     }
-// //     //     if (userData.email) {
-// //     //       await AsyncStorage.setItem("fcuserEmail", userData.email);
-// //     //     }
-// //     //     if (userData.mobileNumber) {
-// //     //       await AsyncStorage.setItem("fcuserMObile", userData.mobileNumber);
-// //     //     }
-// //     //     if (userData.password) {
-// //     //       await AsyncStorage.setItem("fcuserPassword", userData.password);
-// //     //     }
-// //     //   }
-// //     // } catch (error) {
-// //     //   console.log("Failed to set firebase chat login data", error);
-// //     // }
-// //     //               }
-// //     //             }
-// //     //           )
-
-// //     //         }
-// //     //       }
-// //     //     ).catch((err) => {
-// //     //       console.log("Error: ", err.message);
-
-// //     //     })
-// //     //   }
-// //     // const userId = uuidv4();
-// //     //   const usersCollection = collection(firebaseDB, 'users');
-// //     //   await addDoc(usersCollection, {
-// //     //     userId: userId,
-// //     //     email: email,
-// //     //     name:name,
-// //     //     mobile:mobile,
-// //     //     password: password
-// //     //   }).then(res=>{
-// //     //     console.log('user created');
-// //     //   }).catch(error=>{
-// //     //     console.log(error);
-
-// //     //   })
-// //     // const userId = uuidv4();
-// //     //     const usersCollection = collection(firebaseDB, 'users');
-// //     //     await addDoc(usersCollection, {
-// //     //       userId: userId,
-// //     //       email: email,
-// //     //       password: password
-// //     //     }).then(res => {
-// //     //       console.log('user created');
-// //     //     }).catch(error => {
-// //     //       console.log(error);
-
-// //     //     })
-// //     // Query for the user document based on email
-// //     if ((email1 !== null) && (password !== null)) {
-// //       // console.log("i m in login with firebase function");
-// //       console.log("my email is :-",email1);
-      
-// //       const usersCollection = collection(firebaseDB, 'users');
-// //       const q = query(usersCollection, where('email', '==', email1));
-    
-// //       try {
-// //         const querySnapshot = await getDocs(q);
-// //         querySnapshot.forEach(async (doc) => {
-// //           if (doc.exists()) {
-// //             const userData = doc.data();
-// //             console.log('User data:---', userData);
-// //            if(userData != null){
-// //             // console.log("hii this is vinit......");
-           
-// //             if (userData && Object.keys(userData).length > 0) {
-// //               try {
-// //                 await AsyncStorage.setItem("femail", userData.email || "");
-// //                 await AsyncStorage.setItem("fmobile", userData.mobile || "");
-// //                 await AsyncStorage.setItem("fid", userData.idf || "");
-// //                 await AsyncStorage.setItem("fname", userData.name || "");
-// //                 await AsyncStorage.setItem("fpassword", userData.password || "");
-// //               // console.log(userData.idf);
-              
-// //                 console.log("Data stored Of Firebase in AsyncStorage successfully");
-// //               } catch (error) {
-// //                 console.log("Error storing data in AsyncStorage:", error);
-// //               }
-// //             } else {
-// //               console.log("User data is null or empty");
-// //             }
-            
-            
-// //            }
-
-// //           } else {
-// //             console.log('Document does not exist');
-// //           }
-// //         })
-// //       } catch (error) {
-// //         console.error('Error getting user data except email:', error);
-// //       }
-// //     }
-
-
-// //   }
-
-
-// //   return (
-// //     <SafeAreaView style={styles.container}>
-// //       <View style={styles.container1}>
-// //         <View style={styles.signuplogo}>
-// //           <Image style={styles.tinyLogo}
-// //             source={require('../../assets/istockphoto2.png')} />
-// //         </View>
-
-// //         <View style={{ padding: 10 }}>
-// //           <View style={styles.container2}>
-// //             <MaterialCommunityIcons name="email-outline" size={30} color="#666" style={styles.icon} />
-// //             <TextInput
-// //               placeholder='Email'
-// //               keyboardType='email-address'
-// //               value={email}
-// //               onChangeText={handleEmailChange}
-// //               style={styles.textinput}
-// //             />
-
-// //           </View>
-// //           <Text style={{ color: 'red' }}>{emailError}</Text>
-// //           <View style={styles.container3}>
-// //             <Ionicons name="lock-closed-outline" size={30} color="#666" style={styles.icon} />
-// //             <TextInput
-// //               placeholder='Password'
-// //               secureTextEntry={true}
-// //               value={password}
-// //               onChangeText={handlePasswordChange}
-// //               textContentType='password'
-// //               style={styles.textinput}
-// //             />
-
-
-// //             <TouchableOpacity onPress={() => { }}>
-// //               <Text style={{ fontSize: 17, marginTop: 14, color: '#002699' }} >Forgot?</Text>
-// //             </TouchableOpacity>
-
-// //           </View>
-// //           <Text style={{ color: 'red', }}>{passwordError}</Text>
-// //         </View>
-
-// //         <View>
-// //           <TouchableOpacity onPress={handleLogin} style={styles.login}>
-// //             <Text style={styles.loginText}>Login</Text>
-// //           </TouchableOpacity>
-// //         </View>
-
-// //         <Text style={{ textAlign: 'center', color: '#666', marginTop: 20, marginBottom: 20 }}>
-// //           Or, login with ...
-// //         </Text>
-
-// //         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
-// //           <TouchableOpacity onPress={() => { }} style={styles.container4}>
-// //             <Ionicons name="logo-google" size={26} color="red" style={styles.icon1} />
-// //           </TouchableOpacity>
-
-// //           <TouchableOpacity onPress={() => { }} style={styles.container5}>
-// //             <Ionicons name="phone-portrait" size={26} color="blue" style={styles.icon2} />
-// //           </TouchableOpacity>
-// //         </View>
-
-// //         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30 }}>
-// //           <Text style={{ marginTop: 3, marginRight: 5 }}>New to the app?</Text>
-// //           <TouchableOpacity >
-// //             <Text style={{ color: '#002699', fontWeight: '700', fontSize: 18 }}
-// //               onPress={() => navigation.navigate('Signup')}
-// //             >Signup</Text>
-// //           </TouchableOpacity>
-// //         </View>
-// //       </View>
-// //     </SafeAreaView>
-// //   );
-// // };
-
-// // const styles = StyleSheet.create({
-// //   container: {
-// //     flex: 1,
-// //   },
-// //   tinyLogo: {
-// //     width: 300,
-// //     height: 120,
-// //   },
-// //   signuplogo: {
-// //     justifyContent: 'center',
-// //   },
-// //   container1: {
-// //     margin: 20,
-// //     padding: 20,
-// //   },
-// //   container2: {
-// //     flexDirection: 'row',
-// //     borderBlockEndColor: '#ccc',
-// //     borderBottomWidth: 1,
-// //     marginTop: 15,
-// //   },
-// //   container3: {
-// //     flexDirection: 'row',
-// //     borderBlockEndColor: '#ccc',
-// //     borderBottomWidth: 1,
-// //     marginBottom: 4,
-// //     marginTop: 20,
-// //   },
-// //   textinput: {
-// //     fontSize: 20,
-// //     flex: 1,
-// //     paddingVertical: 0,
-// //     marginTop: 6,
-// //   },
-// //   icon: {
-// //     marginTop: 15,
-// //     paddingBottom: 4,
-// //     marginRight: 10,
-// //   },
-// //   login: {
-// //     backgroundColor: '#002699',
-// //     padding: 13,
-// //     borderRadius: 10,
-// //     marginTop: 20,
-// //   },
-// //   loginText: {
-// //     color: '#fff',
-// //     fontSize: 17,
-// //     textAlign: 'center',
-// //     fontWeight: '600',
-// //   },
-// //   container4: {
-// //     borderColor: 'red',
-// //     borderWidth: 1,
-// //     borderRadius: 10,
-// //     paddingHorizontal: 20,
-// //     paddingVertical: 8,
-// //     marginRight: 10,
-// //   },
-// //   container5: {
-// //     borderColor: 'blue',
-// //     borderWidth: 1,
-// //     borderRadius: 10,
-// //     paddingHorizontal: 20,
-// //     paddingVertical: 8,
-// //     marginRight: 10,
-// //   },
-// //   icon1: {},
-// //   icon2: {},
-// // });
-
-// // export default Login;
-
-
-
-
-// import { View, Text, StyleSheet, TextInput, Image, SafeAreaView, Alert } from 'react-native';
-// import React, { useEffect, useState, createContext, useContext } from 'react';
-// // import axios from 'axios';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import { TouchableOpacity } from 'react-native';
-// import { NavigationProp, useRoute } from '@react-navigation/native';
-// // import Screen3 from '../navigation/Screen3';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { useDispatch } from 'react-redux';
-// // import { setUserId } from '../Context/userSlice';
-// import { useNavigation } from '@react-navigation/native'
-// import { CommonActions } from '@react-navigation/native';
-// import { setLoginData } from '../../redux/actions/loginAction';
-// import { collection, getDocs, query, where } from 'firebase/firestore';
-// import { firebaseDB } from '../../Config/Firebaseconfig';
-
-
-// interface UserIdContextProps {
-//   GetUserId: () => string | null;
-//   setUserId: (id: string) => void;
-// }
-
-// const UserIdContext = createContext<UserIdContextProps | undefined>(undefined);
-
-// type LoginProps = {
-//   navigation: NavigationProp<any>;
-// };
-// const Login = ({ navigation }: LoginProps) => {
-
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [emailError, setEmailError] = useState('');
-//   const [passwordError, setPasswordError] = useState('');
-//   // const[userId,setUserId] = useState('')
-//   const dispatch = useDispatch();
-
-
-
-//   //////////////////////////////
-
-
-//   ///////////////////////////////
-
-
-
-
-
-
-
-
-
-//   //////////////////////////
- 
-//   const isValidEmail = (email: any) => {
-//     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-//     const hasNumber = /\d/.test(email);
-//     return emailRegex.test(email) && hasNumber;
-//   };
-
-//   const handleEmailChange = (input: any) => {
-//     setEmail(input);
-//     if (isValidEmail(input)) {
-//       setEmailError('');
-//     }
-//   };
-//   const isValidPassword = (password: string) => {
-//     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-//     return passwordRegex.test(password);
-//   };
-
-//   const handlePasswordChange = (input: string) => {
-//     setPassword(input);
-//     if (isValidPassword(input)) {
-//       setPasswordError('');
-//     }
-//   };
-
-//   const handleLogin = async () => {
-//     if (!isValidEmail(email)) {
-//       setEmailError('Invalid email address');
-//     }
-
-//     if (!isValidPassword(password)) {
-//       setPasswordError('Invalid password');
-//     }
-
-//     if (isValidEmail(email) && isValidPassword(password)) {
-//       console.log('Login data submitted:', {
-//         email,
-//         password,
-//       });
-
-//       // Your login logic goes here...
-//       try {
-//         const formData = new FormData();
-//         formData.append('email', email);
-//         formData.append('password', password);
-
-//         const response = await fetch('https://shreddersbay.com/API/user_api.php?action=signin', {
-//           method: 'POST',
-//           body: formData,
-//         });
-
-//         if (response.ok) {
-//           const responseData = await response.json();
-//           console.log('Login Successful:', responseData);
-//           ///////          setUserCred(responseData);
-//           const userId = responseData["0"].id;
-//           // const data = await response.json()
-//           console.log("my id is:--", userId);
-      
-
-//           dispatch(setLoginData(responseData));
-
-
-//           try {
-           
-//             try {
-//               await AsyncStorage.setItem("UserCred", JSON.stringify(responseData));
-//               const userId = responseData[0].id;
-//               await AsyncStorage.setItem("UserIdapp",userId);
-
-//               console.log('Data stored successfully', responseData);
-//             } catch (error) {
-//               console.error('Error storing data:', error);
-//             }
-//             ///////////////////////////////////////////////////////////
-
-//             console.log("data set successfully");
-//             Alert.alert(
-//               "Login Successfully",
-//               "You have successfully logged in.",
-//               [
-//                 {
-//                   text: "OK",
-//                   onPress: () => {
-//                     // Reset the navigation stack to 'Screen1' removing all screens
-//                     // navigation.navigate("T1Screen1")
-//                     LoginWithfirebase(email, password);
-//                     navigation.navigate('Tab1', { screen: 'T1Screen1' });
-
-
-
-//                   },
-//                   // onPress: () => {
-//                   //   // Reset the navigation stack to 'Screen1' removing all screens
-//                   //   const resetAction = CommonActions.reset({
-//                   //     index: 0,
-//                   //     routes: [{ name: 'T1Screen1' }],
-//                   //   });
-//                   //   navigation.dispatch(resetAction);
-//                   // },
-//                 },
-//               ],
-//               { cancelable: false }
-//             );
-//           } catch (error) {
-//             console.log("data is not set ")
-//           }
-
-//           // Handle successful login here (e.g., navigate to another screen)
-//           // navigation.navigate('Home');
-//         } else {
-//           console.error('Login failed:', response.status);
-//           // Handle failed login (show error message, etc.)
-//         }
-//       } catch (error) {
-//         console.error('Error during login:', error);
-//         // Handle other errors (network, server unreachable, etc.)
-//       }
-//     } else {
-//       console.log('Login data is not valid.');
-//     }
-//   };
-//   const LoginWithfirebase = async (email1: string, password: string) => {
-//     if ((email1 !== null) && (password !== null)) {
-//       // console.log("i m in login with firebase function");
-//       console.log("my email is :-",email1);
-      
-//       const usersCollection = collection(firebaseDB, 'users');
-//       const q = query(usersCollection, where('email', '==', email1));
-    
-//       try {
-//         const querySnapshot = await getDocs(q);
-//         querySnapshot.forEach(async (doc) => {
-//           if (doc.exists()) {
-//             const userData = doc.data();
-//             console.log('User data:---', userData);
-//            if(userData != null){
-//             // console.log("hii this is vinit......");
-           
-//             if (userData && Object.keys(userData).length > 0) {
-//               try {
-//                 await AsyncStorage.setItem("femail", userData.email || "");
-//                 await AsyncStorage.setItem("fmobile", userData.mobile || "");
-//                 await AsyncStorage.setItem("fid", userData.idf || "");
-//                 await AsyncStorage.setItem("fname", userData.name || "");
-//                 await AsyncStorage.setItem("fpassword", userData.password || "");
-//               // console.log(userData.idf);
-              
-//                 console.log("Data stored Of Firebase in AsyncStorage successfully");
-//               } catch (error) {
-//                 console.log("Error storing data in AsyncStorage:", error);
-//               }
-//             } else {
-//               console.log("User data is null or empty");
-//             }
-            
-            
-//            }
-
-//           } else {
-//             console.log('Document does not exist');
-//           }
-//         })
-//       } catch (error) {
-//         console.error('Error getting user data except email:', error);
-//       }
-//     }
-
-
-//   }
-
-
-//   return (
-    
-//     <SafeAreaView style={styles.container}>
-//       <View style={styles.container1}>
-//         <View style={styles.signuplogo}>
-//           <Image style={styles.tinyLogo}
-//             source={require('../../assets/istockphoto2.png')} />
-//         </View>
-
-//         <View style={{ padding: 10 }}>
-//           <View style={styles.container2}>
-//             <MaterialCommunityIcons name="email-outline" size={30} color="#666" style={styles.icon} />
-//             <TextInput
-//               placeholder='Email'
-//               keyboardType='email-address'
-//               value={email}
-//               onChangeText={handleEmailChange}
-//               style={styles.textinput}
-//             />
-
-//           </View>
-//           <Text style={{ color: 'red' }}>{emailError}</Text>
-//           <View style={styles.container3}>
-//             <Ionicons name="lock-closed-outline" size={30} color="#666" style={styles.icon} />
-//             <TextInput
-//               placeholder='Password'
-//               secureTextEntry={true}
-//               value={password}
-//               onChangeText={handlePasswordChange}
-//               textContentType='password'
-//               style={styles.textinput}
-//             />
-
-
-//             <TouchableOpacity onPress={() => { }}>
-//               <Text style={{ fontSize: 17, marginTop: 14, color: '#002699' }} >Forgot?</Text>
-//             </TouchableOpacity>
-
-//           </View>
-//           <Text style={{ color: 'red', }}>{passwordError}</Text>
-//         </View>
-
-//         <View>
-//           <TouchableOpacity onPress={handleLogin} style={styles.login}>
-//             <Text style={styles.loginText}>Login</Text>
-//           </TouchableOpacity>
-//         </View>
-
-//         <Text style={{ textAlign: 'center', color: '#666', marginTop: 20, marginBottom: 20 }}>
-//           Or, login with ...
-//         </Text>
-
-//         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
-//           <TouchableOpacity onPress={() => { }} style={styles.container4}>
-//             <Ionicons name="logo-google" size={26} color="red" style={styles.icon1} />
-//           </TouchableOpacity>
-
-//           <TouchableOpacity onPress={() => { }} style={styles.container5}>
-//             <Ionicons name="phone-portrait" size={26} color="blue" style={styles.icon2} />
-//           </TouchableOpacity>
-//         </View>
-
-//         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30 }}>
-//           <Text style={{ marginTop: 3, marginRight: 5 }}>New to the app?</Text>
-//           <TouchableOpacity >
-//             <Text style={{ color: '#002699', fontWeight: '700', fontSize: 18 }}
-//               onPress={() => navigation.navigate('Signup')}
-//             >Signup</Text>
-//           </TouchableOpacity>
-//         </View>
-//       </View>
-//     </SafeAreaView>
-    
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   tinyLogo: {
-//     width: 300,
-//     height: 120,
-//   },
-//   signuplogo: {
-//     justifyContent: 'center',
-//   },
-//   container1: {
-//     margin: 20,
-//     padding: 20,
-//   },
-//   container2: {
-//     flexDirection: 'row',
-//     borderBlockEndColor: '#ccc',
-//     borderBottomWidth: 1,
-//     marginTop: 15,
-//   },
-//   container3: {
-//     flexDirection: 'row',
-//     borderBlockEndColor: '#ccc',
-//     borderBottomWidth: 1,
-//     marginBottom: 4,
-//     marginTop: 20,
-//   },
-//   textinput: {
-//     fontSize: 20,
-//     flex: 1,
-//     paddingVertical: 0,
-//     marginTop: 6,
-//   },
-//   icon: {
-//     marginTop: 15,
-//     paddingBottom: 4,
-//     marginRight: 10,
-//   },
-//   login: {
-//     backgroundColor: '#002699',
-//     padding: 13,
-//     borderRadius: 10,
-//     marginTop: 20,
-//   },
-//   loginText: {
-//     color: '#fff',
-//     fontSize: 17,
-//     textAlign: 'center',
-//     fontWeight: '600',
-//   },
-//   container4: {
-//     borderColor: 'red',
-//     borderWidth: 1,
-//     borderRadius: 10,
-//     paddingHorizontal: 20,
-//     paddingVertical: 8,
-//     marginRight: 10,
-//   },
-//   container5: {
-//     borderColor: 'blue',
-//     borderWidth: 1,
-//     borderRadius: 10,
-//     paddingHorizontal: 20,
-//     paddingVertical: 8,
-//     marginRight: 10,
-//   },
-//   icon1: {},
-//   icon2: {},
-// });
-
-// export default Login;
-
-
 import { View, Text, StyleSheet, TextInput, Image, SafeAreaView, Alert } from 'react-native';
 import React, { useEffect, useState, createContext, useContext } from 'react';
 // import axios from 'axios';
@@ -1115,13 +12,14 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native'
 import { CommonActions } from '@react-navigation/native';
 import { setLoginData } from '../../redux/actions/loginAction';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { firebaseDB } from '../../Config/Firebaseconfig';
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser"
-// web: 763429625259-ut8pfj2edgmiks42epfj9e4nla8nj706.apps.googleusercontent.com
-// ios: 763429625259-4k2snc1nfjbdf6erh67htbgvrccpbr3v.apps.googleusercontent.com
-// android 763429625259-vt479t47a8p6r39g6k45fd02jicrc6n9.apps.googleusercontent.com
+import uuid from "react-native-uuid";
+// web: "763429625259-ut8pfj2edgmiks42epfj9e4nla8nj706.apps.googleusercontent.com",
+// ios: "763429625259-4k2snc1nfjbdf6erh67htbgvrccpbr3v.apps.googleusercontent.com",
+// android: "763429625259-vt479t47a8p6r39g6k45fd02jicrc6n9.apps.googleusercontent.com",
 WebBrowser.maybeCompleteAuthSession();
 
 
@@ -1138,8 +36,6 @@ type LoginProps = {
   navigation: NavigationProp<any>;
 };
 const Login = ({ navigation }: LoginProps) => {
-  const [accessToken, setAccessToken] = useState(null);
-  const [gUserInfo, setGUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     androidClientId:
       "763429625259-vt479t47a8p6r39g6k45fd02jicrc6n9.apps.googleusercontent.com",
@@ -1148,33 +44,115 @@ const Login = ({ navigation }: LoginProps) => {
     webClientId:
     "763429625259-pqbkm905lr71d5k9u4qbt7o4p6i2ag9s.apps.googleusercontent.com",
   });
-  useEffect(() => { handleSignInWithGoogle(); },[response])
-  const handleSignInWithGoogle = async () => {
-    const user =await AsyncStorage.getItem("@user");
-    if (!user) {
-      if (response?.type === "success") {
-        
-        await getUserInfo(response.authentication.accessToken);
+   useEffect(() => {
+     handleSignInWithGoogle(response);
+   }, [response]);
+const handleSignInWithGoogle = async (response) => {
+  try {
+    if (response?.type === "success") {
+      if (
+        response.authentication.accessToken &&
+        response.authentication.idToken
+      ) {
+        const userInfo = await getUserInfo(response.authentication.accessToken);
+        // console.log("userInfo:", userInfo); // Log userInfo to identify any unexpected content
+        if (userInfo) {
+          handleGoogleLogin(userInfo.id,response.authentication.idToken,userInfo.name,userInfo.email,userInfo.picture);
+        } else {
+          console.log("Error fetching user info");
+        }
+      } else {
+        console.log("One or more required parameters are missing");
+      }
+    }
+   
+  } catch (error) {
+    // Handle specific errors
+    if (error.response && error.response.status === 400) {
+      console.log("Bad Request: The provided tokens are invalid or expired");
+      // Perform actions to handle invalid or expired tokens, such as logging out the user
+    } else {
+      // Handle other errors
+      console.error("Error handling sign in with Google:", error);
+    }
+  }
+};
+
+
+const getUserInfo = async (token) => {
+  try {
+    if (!token) return null;
+    const response = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      console.error("Error fetching user info:", response.status);
+      return null;
+    }
+    const user = await response.json();
+    await AsyncStorage.setItem("@user", JSON.stringify(user));
+   
+    return user;
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    return null;
+  }
+};
+
+  const handleGoogleLogin = async (gUserId,gAccessToken,gUserName,gUserEmail,gUserPic) => {
+  console.log("gUserid:-",gUserId,"gAccessToken:-",gAccessToken,"gUserName",gUserName,"gUserEmail",gUserEmail,"guserPic",gUserPic)
+  try {
+    if (!gUserId || !gAccessToken || !gUserName || !gUserEmail || !gUserPic) {
+      console.error("One or more required parameters are missing");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("google_id", gUserId);
+    formData.append("token", gAccessToken);
+    formData.append("name", gUserName);
+    formData.append("email", gUserEmail);
+    formData.append("profile_pic", gUserPic);
+     authenticateWithFirebase(gUserEmail);
+    const response = await fetch(
+      "https://shreddersbay.com/API/user_api.php?action=google_login",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log("Login Successful:", responseData);
+      const userId = responseData["0"].id;
+      dispatch(setLoginData(responseData));
+      try {
+        await AsyncStorage.setItem("UserCred", JSON.stringify(responseData));
+        await AsyncStorage.setItem("UserIdapp", userId);
+        Alert.alert(
+          "Login Successfully",
+          "You have successfully logged in.",
+          [
+            {
+              text: "OK",
+              onPress: () =>
+                navigation.navigate("Tab1", { screen: "T1Screen1" }),
+            },
+          ],
+          { cancelable: false }
+        );
+      } catch (error) {
+        console.error("Error storing data:", error);
       }
     } else {
-      setGUserInfo(JSON.parse( user))
+      console.error("Error:", response.status);
     }
+  } catch (error) {
+    console.error("Error:", error);
   }
-  const getUserInfo = async (token) => {
-    if (!token) return;
-    try {
-      const response = await fetch("https://www.googleapis.com/userinfo/v2/me",
-        {
-          headers: { Authorization: `Bearer ${token}`},
-        });
-      const user = await response.json();
-      await AsyncStorage.setItem("@user", JSON.stringify(user));
-      setGUserInfo(user);
-      
-    } catch (error) {
-      
-    }
-  }
+};
+
+
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -1213,7 +191,9 @@ const Login = ({ navigation }: LoginProps) => {
     }
   };
   const isValidPassword = (password: string) => {
-    const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     return passwordRegex.test(password);
   };
 
@@ -1285,7 +265,7 @@ const Login = ({ navigation }: LoginProps) => {
                   onPress: () => {
                     // Reset the navigation stack to 'Screen1' removing all screens
                     // navigation.navigate("T1Screen1")
-                    LoginWithfirebase(email, password);
+                    authenticateWithFirebase(email);
                     navigation.navigate('Tab1', { screen: 'T1Screen1' });
 
 
@@ -1321,54 +301,114 @@ const Login = ({ navigation }: LoginProps) => {
       console.log('Login data is not valid.');
     }
   };
-  const LoginWithfirebase = async (email1: string, password: string) => {
-    if ((email1 !== null) && (password !== null)) {
-      // console.log("i m in login with firebase function");
-      console.log("my email is :-",email1);
-      
-      const usersCollection = collection(firebaseDB, 'users');
-      const q = query(usersCollection, where('email', '==', email1));
-    
-      try {
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc) => {
-          if (doc.exists()) {
-            const userData = doc.data();
-            console.log('User data:---', userData);
-           if(userData != null){
-            // console.log("hii this is vinit......");
-           
-            if (userData && Object.keys(userData).length > 0) {
-              try {
-                await AsyncStorage.setItem("femail", userData.email || "");
-                await AsyncStorage.setItem("fmobile", userData.mobile || "");
-                await AsyncStorage.setItem("fid", userData.idf || "");
-                await AsyncStorage.setItem("fname", userData.name || "");
-                await AsyncStorage.setItem("fpassword", userData.password || "");
-              // console.log(userData.idf);
-              
-                console.log("Data stored Of Firebase in AsyncStorage successfully");
-              } catch (error) {
-                console.log("Error storing data in AsyncStorage:", error);
-              }
-            } else {
-              console.log("User data is null or empty");
-            }
-            
-            
+  // const LoginWithfirebase = async (email1: string) => {
+  //   // if ((email1 !== null) && (password !== null)) {
+  //       if (email1 !== null ) {
+  //         // console.log("i m in login with firebase function");
+  //         console.log("my email is :-", email1);
+
+  //         const usersCollection = collection(firebaseDB, "users");
+  //         const q = query(usersCollection, where("email", "==", email1));
+
+  //         try {
+  //           const querySnapshot = await getDocs(q);
+  //           querySnapshot.forEach(async (doc) => {
+  //             if (doc.exists()) {
+  //               const userData = doc.data();
+  //               console.log("User data:---", userData);
+  //               if (userData != null) {
+                 
+
+  //                 if (userData && Object.keys(userData).length > 0) {
+  //                   try {
+  //                     await AsyncStorage.setItem(
+  //                       "femail",
+  //                       userData.email || ""
+  //                     );
+  //                     await AsyncStorage.setItem(
+  //                       "fmobile",
+  //                       userData.mobile || ""
+  //                     );
+  //                     await AsyncStorage.setItem("fid", userData.idf || "");
+  //                     await AsyncStorage.setItem("fname", userData.name || "");
+  //                     await AsyncStorage.setItem(
+  //                       "fpassword",
+  //                       userData.password || ""
+  //                     );
+  //                     // console.log(userData.idf);
+
+  //                     console.log(
+  //                       "Data stored Of Firebase in AsyncStorage successfully"
+  //                     );
+  //                   } catch (error) {
+  //                     console.log("Error storing data in AsyncStorage:", error);
+  //                   }
+  //                 } else {
+  //                   console.log("User data is null or empty");
+  //                 }
+  //               }
+  //             } else {
+  //               console.log("Document does not exist");
+  //             }
+  //           });
+  //         } catch (error) {
+  //           console.error("Error getting user data except email:", error);
+  //         }
+  //       }
+
+
+  // }
+const authenticateWithFirebase = async (email) => {
+  const usersCollection = collection(firebaseDB, "users");
+  const q = query(usersCollection, where("email", "==", email));
+
+  try {
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      // User exists, log them in
+      querySnapshot.forEach(async (doc) => {
+        const userData = doc.data();
+         if (userData != null) {
+           if (userData && Object.keys(userData).length > 0) {
+             try {
+               await AsyncStorage.setItem("femail", userData.email || "");
+               await AsyncStorage.setItem("fmobile", userData.mobile || "");
+               await AsyncStorage.setItem("fid", userData.idf || "");
+               await AsyncStorage.setItem("fname", userData.name || "");
+               await AsyncStorage.setItem("fpassword", userData.password || "");
+               // console.log(userData.idf);
+
+               console.log(
+                 "Data stored Of Firebase in AsyncStorage successfully"
+               );
+             } catch (error) {
+               console.log("Error storing data in AsyncStorage:", error);
+             }
+           } else {
+             console.log("User data is null or empty");
            }
+         }
+        
+      });
+    } else {
+      // User doesn't exist, sign them up
+      const userIdf = uuid.v4();
+      const userDocumentRef = doc(usersCollection, `${userIdf}`);
+      const userObjectf = {
+        name: "", // Set name if provided, otherwise empty string
+        email,
+        mobile:"", // Set mobile if provided, otherwise empty string
+        password:"", // Set password if provided, otherwise empty string
+        idf: userIdf,
+      };
 
-          } else {
-            console.log('Document does not exist');
-          }
-        })
-      } catch (error) {
-        console.error('Error getting user data except email:', error);
-      }
+      await setDoc(userDocumentRef, userObjectf);
+      console.log("User signed up successfully:", userObjectf);
     }
-
-
+  } catch (error) {
+    console.error("Error authenticating with Firebase:", error);
   }
+};
 
 
   return (
@@ -1439,7 +479,7 @@ const Login = ({ navigation }: LoginProps) => {
         >
           Or, login with ...
         </Text>
-        <Text>{JSON.stringify(gUserInfo)}</Text>
+        
         <View
           style={{
             flexDirection: "row",
