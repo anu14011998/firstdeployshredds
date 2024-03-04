@@ -6,13 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
-    "platforms": [
-      "android",
-      "ios"
-    ],
-    "permissions": [
-      "INTERNET"
-    ],
+    "platforms": ["android", "ios"],
+    "permissions": ["INTERNET"],
     "extra": {
       "eas": {
         "projectId": "899a3d51-4ab2-46d5-a140-644e3ad1b7be"
@@ -23,13 +18,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.shreddersbay",
-      "minVersion": "14.0"
+      "minVersion": "13.0",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": ["myapp"]
+          }
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -49,6 +50,23 @@
     },
     "updates": {
       "url": "https://u.expo.dev/899a3d51-4ab2-46d5-a140-644e3ad1b7be"
-    }
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 31,
+            "targetSdkVersion": 31,
+            "buildToolsVersion": "31.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.4",
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }

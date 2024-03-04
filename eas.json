@@ -26,6 +26,12 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId":"shreddersbay@gmail.com",
+        "ascAppId":"6478656422",
+        "appleTeamId":"K2LHY9VWLN"
+      }
+    }
   }
 }
