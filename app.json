@@ -13,6 +13,12 @@
         "projectId": "899a3d51-4ab2-46d5-a140-644e3ad1b7be"
       }
     },
+    "androidStatusBar": {
+      "backgroundColor": "#ffffff",
+      "barStyle": "dark-content",
+      "translucent": true,
+      "hidden": false
+    },
     "splash": {
       "image": "./assets/adaptive-icon.png",
       "resizeMode": "contain",
@@ -30,6 +36,10 @@
             "CFBundleURLSchemes": ["myapp"]
           }
         ]
+      },
+      "statusBar": {
+        "backgroundColor": "#ffffff", 
+        "style": "dark"
       }
     },
     "android": {

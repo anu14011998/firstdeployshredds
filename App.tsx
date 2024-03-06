@@ -147,7 +147,7 @@ const App = () => {
 
           }}
         />
-        <Stack.Screen name='T3Screen2' component={T3Screen2} />
+        <Stack.Screen name='My Order' component={T3Screen2} />
         <Stack.Screen name='T3Screen3' component={T3Screen3} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
@@ -163,7 +163,7 @@ const App = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen name='T3Screen1' component={T4Screen1} options={{ headerShown: false }} />
-        <Stack.Screen name='T3Screen2' component={T4Screen2}  />
+        <Stack.Screen name='My Order' component={T4Screen2}  />
         <Stack.Screen name='T3Screen3' component={T4Screen1} options={{ headerShown: false }} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
@@ -220,102 +220,87 @@ const App = () => {
     )
   }
   return (
-
-
     <Provider store={store}>
-
-
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName='T1Screen'
+          initialRouteName="T1Screen"
           screenOptions={({ route }) => ({
-
             unmountOnBlur: true, // Unmount the screen when it's not visible
 
-            tabBarActiveTintColor: '#483948',
-            tabBarInactiveTintColor: 'black',
-            tabBarActiveBackgroundColor: 'lightgrey',
-            tabBarInactiveBackgroundColor: '#fff',
+            tabBarActiveTintColor: "#483948",
+            tabBarInactiveTintColor: "black",
+            tabBarActiveBackgroundColor: "lightgrey",
+            tabBarInactiveBackgroundColor: "#fff",
             tabBarLabelStyle: {
               fontSize: 15,
             },
 
             // headerShown: false,
           })}
-
-
         >
-          <Tab.Screen name='Tab1' component={Stack1} options=
-            {{
+          <Tab.Screen
+            name="Tab1"
+            component={Stack1}
+            options={{
               headerShown: false,
-              tabBarLabel: 'Home',
+              tabBarLabel: "Home",
               tabBarIcon: ({ color, size }) => (
                 <FontAwesome name="home" color={color} size={size} />
               ),
-            }} />
+            }}
+          />
 
-
-          <Tab.Screen name='Scrap Cart' component={Stack2}
-            options={({ navigation }) =>
-            ({
-
-             
+          <Tab.Screen
+            name="Scrap Cart"
+            component={Stack2}
+            options={({ navigation }) => ({
               headerShown: false,
-              tabBarLabel: 'Scrap Cart',
+              tabBarLabel: "Scrap Cart",
               tabBarIcon: ({ color, size }) => (
                 <FontAwesome name="shopping-cart" color={color} size={size} />
               ),
-
-
-            })
-            }
-
+            })}
           />
 
-          <Tab.Screen name='Scrap Item' component={Stack3}
-
+          <Tab.Screen
+            name="Scrap Item"
+            component={Stack3}
             options={{
-              tabBarLabel: 'Sell',
+              tabBarLabel: "Sell",
               headerShown: false,
               tabBarIcon: ({ color, size }) => (
-
                 <FontAwesome name="sellsy" color={color} size={size} />
               ),
-
             }}
-
           />
 
-          <Tab.Screen name='Tab5' component={Stack5}
+          <Tab.Screen
+            name="Chat"
+            component={Stack5}
             options={{
-              tabBarLabel: 'chat',
+              tabBarLabel: "chat",
+              headerTitleAlign: "center",
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="chatbubble-sharp" color={color} size={size} />
-
               ),
             }}
           />
-          <Tab.Screen name='Setting' component={Stack4}
+          <Tab.Screen
+            name="Setting"
+            component={Stack4}
             options={{
-              tabBarLabel: 'Setting',
+              tabBarLabel: "Setting",
               headerShown: false,
-              headerTitle: 'setting',
+              headerTitle: "setting",
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="settings" color={color} size={size} />
-
               ),
             }}
           />
-
         </Tab.Navigator>
       </NavigationContainer>
-
-
     </Provider>
-
-
-
-  )
+  );
 }
 
 export default App

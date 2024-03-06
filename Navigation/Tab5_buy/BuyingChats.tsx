@@ -5,7 +5,7 @@ import ChatBlank from './ChatBlank'
 const BuyingChats = () => {
   return (
     <View>
-      <Text>BuyingChats</Text>
+      {/* <Text>BuyingChats</Text> */}
       <ChatBlank/>
     </View>
   )

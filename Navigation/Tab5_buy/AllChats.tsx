@@ -1358,7 +1358,7 @@ const AllChats = ({navigation}) => {
   }
  
   return (
-    <View style={{backgroundColor:'white'}}>
+    <View >
       {/* <Text>{JSON.stringify(users)}</Text> */}
       {uid && users.length > 0 ? (
         // <FlatList

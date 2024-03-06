@@ -16,7 +16,7 @@ const T4Screen_myorder_chooseBuySell = ({navigation}) => {
 
   };
   return (
-    <View>
+    <View style={{}}>
 
       <View style={styles.btn}>
         <TouchableOpacity onPress={myorder_buy}>
@@ -39,22 +39,28 @@ const T4Screen_myorder_chooseBuySell = ({navigation}) => {
     </View>
   )
 }
-const styles =StyleSheet.create({
-  btn:{
-    height:90,
-    width:'80%',
-    alignItems:'center',
-    marginTop:30,
-    backgroundColor:'#ddd',
-    marginLeft:40,
-    paddingTop:15,
-    borderRadius:30,
+const styles = StyleSheet.create({
+  btn: {
+    height: 50,
+    width: "70%",
+    justifyContent: "center",
+    marginTop: 30,
+    backgroundColor: "#ddd",
+    marginLeft: 40,
+    borderRadius: 45, // Half of the height to make it circular
+    borderWidth: 2,
+    borderColor: "#999",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5, // For Android
   },
-  txt:{
-    fontSize:40,
-    alignSelf:'center',
-    fontWeight:'400'
-  }
-})
+  txt: {
+    fontSize: 30,
+    alignSelf: "center",
+    fontWeight: "400",
+  },
+});
 
 export default T4Screen_myorder_chooseBuySell

@@ -82,13 +82,17 @@ const T4Screen1 = ({ navigation }) => {
     try {
       // await AsyncStorage.getItem('UserCred');
       Alert.alert(
-        "Logged out Successfully",
-        "You have successfully logged OUt.",
+        "Logout Confirmation",
+        "Are you sure you want to logout?",
         [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
           {
             text: "OK",
             onPress: async () => {
-              // Reset the navigation stack to 'Screen1' removing all screens
               await AsyncStorage.removeItem("UserCred");
               await AsyncStorage.removeItem("UserIdapp");
               await AsyncStorage.removeItem("femail");
@@ -122,7 +126,7 @@ const T4Screen1 = ({ navigation }) => {
   const orderDetail = () => {
     console.log("working fine");
     // navigation.navigate('MyOrder');
-    navigation.navigate("T3Screen2");
+    navigation.navigate("My Order");
   };
 
   const AddAdress = () => {
@@ -455,7 +459,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between", // To evenly space the two elements
     alignItems: "center", // Align items vertically
-    paddingHorizontal: 20, // Add padding as needed
+    paddingHorizontal: 20,
+    paddingVertical: 8,// Add padding as needed
     // Other styles
   },
   icon: {
@@ -465,8 +470,8 @@ const styles = StyleSheet.create({
   },
 
   text1: {
-    fontSize: 25,
-    fontWeight: "600",
+    fontSize: 18,
+    fontWeight: "500",
     textAlign: "center",
     color: "black",
   },
